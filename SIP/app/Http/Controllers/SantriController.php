@@ -42,7 +42,7 @@ class SantriController extends Controller
      */
     public function store(Request $request)
     {
-        Santri::create($request0>all());
+        Santri::create($request->all());
 
         return redirect('/santri');
     }
@@ -66,7 +66,9 @@ class SantriController extends Controller
      */
     public function edit($id)
     {
-        return view('santri.edit');
+        $data = Santri::find($id);
+        
+        return view('santri.edit', compact('data'));
     }
 
     /**
@@ -78,7 +80,7 @@ class SantriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Santri::find($id)->update($request0>all());
+        Santri::find($id)->update($request->all());
 
         return redirect('/santri');
     }
