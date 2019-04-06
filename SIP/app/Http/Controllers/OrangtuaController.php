@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Orangtua;
+use App\Model\Santri;
 
 class OrangtuaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +20,9 @@ class OrangtuaController extends Controller
      */
     public function index()
     {
-        $data = Santri::orderBy('created_at', 'desc')->get();
+        $data = Orangtua::orderBy('created_at', 'desc')->get();
 
-        return view('santri.index', compact('data'));
+        return view('orangtua.index', compact('data'));
     }
 
     /**
@@ -26,7 +32,9 @@ class OrangtuaController extends Controller
      */
     public function create()
     {
-        return view('santri.create');
+        $santri = Santri::all();
+        
+        return view('orangtua.create', compact('santri'));
     }
 
     /**
@@ -37,9 +45,24 @@ class OrangtuaController extends Controller
      */
     public function store(Request $request)
     {
-        Santri::create($request0>all());
+        $messages           = [
+            'required'  => 'mohon :attribute di isi',
+            'min'       => 'isilah :attribute minimal :min karakter',
+            'max'       => ':attribute maksimal :max karakter',
+        ];
+        
+        $validateData       = $request->validate([
+            'nik'           => 'required|min:16',
+            'nama'          => 'required|max:50',
+            'gender'        => 'required',
+            'id_santri'     => 'required',
+            'pekerjaan'     => 'required|max:50',
+            'pendidikan'    => 'required|max:50',
+        ],$messages);
+        
+        Orangtua::create($request->all());
 
-        return redirect('/santri');
+        return redirect('/orangtua')->with('success', 'Data berhasil diinput');
     }
 
     /**
@@ -61,7 +84,11 @@ class OrangtuaController extends Controller
      */
     public function edit($id)
     {
-        return view('santri.edit');
+        $data = Orangtua::find($id);
+        $santri = Santri::all();
+        $orangtua = Orangtua::all();
+        
+        return view('orangtua.edit', compact('data','santri', 'orangtua'));
     }
 
     /**
@@ -73,9 +100,24 @@ class OrangtuaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Santri::find($id)->update($request0>all());
+        Orangtua::find($id)->update($request->all());
 
-        return redirect('/santri');
+        $messages           = [
+            'required'  => 'mohon :attribute di isi',
+            'min'       => 'isilah :attribute minimal :min karakter',
+            'max'       => ':attribute maksimal :max karakter',
+        ];
+        
+        $validateData       = $request->validate([
+            'nik'           => 'required|min:16',
+            'nama'          => 'required|max:50',
+            'gender'        => 'required',
+            'id_santri'     => 'required',
+            'pekerjaan'     => 'required|max:50',
+            'pendidikan'    => 'required|max:50',
+        ],$messages);
+
+        return redirect('/orangtua')->with('success', 'Data berhasil diedit');
     }
 
     /**
@@ -86,8 +128,8 @@ class OrangtuaController extends Controller
      */
     public function destroy($id)
     {
-        Santri::find($id)->delete();
+        Orangtua::find($id)->delete();
 
-        return redirect('/santri');
+        return redirect('/orangtua')->with('success', 'Data berhasil dihapus');
     }
 }
