@@ -8,17 +8,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-home"></i>Home</a>
-                                <div id="submenu-5" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('santri.index') }}">Santri</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('orangtua.index') }}">Orang Tua</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a class="nav-link" href="{{ route('santri.index') }}"><i class="fas fa-fw fa-user"></i>Santri</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('orangtua.index') }}"><i class="fas fa-fw fa-users"></i>Orang Tua</a>
                             </li>
                         </ul>
                     </div>

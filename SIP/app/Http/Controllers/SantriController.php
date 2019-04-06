@@ -42,9 +42,23 @@ class SantriController extends Controller
      */
     public function store(Request $request)
     {
+        $messages           = [
+            'required'  => 'mohon :attribute di isi',
+            'min'       => 'isilah :attribute minimal :min karakter',
+            'max'       => ':attribute maksimal :max karakter',
+        ];
+        
+        $validateData       = $request->validate([
+            'nisn'              => 'required|min:10|max:10',
+            'nama'              => 'required|max:50',
+            'tempat_lahir'      => 'required|max:30',
+            'tanggal_lahir'     => 'required',
+            'alamat'            => 'required',
+        ],$messages);
+        
         Santri::create($request->all());
 
-        return redirect('/santri');
+        return redirect('/santri')->with('success', 'Data berhasil diinput');
     }
 
     /**
@@ -82,7 +96,21 @@ class SantriController extends Controller
     {
         Santri::find($id)->update($request->all());
 
-        return redirect('/santri');
+        $messages           = [
+            'required'  => 'mohon :attribute di isi',
+            'min'       => 'isilah :attribute minimal :min karakter',
+            'max'       => ':attribute maksimal :max karakter',
+        ];
+
+        $validateData       = $request->validate([
+            'nisn'              => 'required|min:10|max:10',
+            'nama'              => 'required|max:50',
+            'tempat_lahir'      => 'required|max:30',
+            'tanggal_lahir'     => 'required',
+            'alamat'            => 'required',
+        ],$messages);
+
+        return redirect('/santri')->with('success', 'Data berhasil diedit');
     }
 
     /**
@@ -95,6 +123,6 @@ class SantriController extends Controller
     {
         Santri::find($id)->delete();
 
-        return redirect('/santri');
+        return redirect('/santri')->with('success', 'Data berhasil dihapus');
     }
 }
