@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Pengguna;
 
 class PenggunaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +19,9 @@ class PenggunaController extends Controller
      */
     public function index()
     {
-        //
+        $data = Pengguna::orderBy('created_at', 'desc')->get();
+
+        return view('pengguna.index', compact('data'));
     }
 
     /**
@@ -23,7 +31,7 @@ class PenggunaController extends Controller
      */
     public function create()
     {
-        //
+        return view('pengguna.create');
     }
 
     /**
@@ -34,7 +42,21 @@ class PenggunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages           = [
+            'required'  => 'mohon :attribute di isi',
+            'min'       => 'isilah :attribute minimal :min karakter',
+            'max'       => ':attribute maksimal :max karakter',
+        ];
+        
+        $validateData       = $request->validate([
+            'nama'              => 'required|max:50',
+            'email'             => 'required|max:30|email|unique:pengguna,email',
+            'password'          => 'required',
+        ],$messages);
+        
+        Pengguna::create($request->all());
+
+        return redirect('/pengguna')->with('success', 'Data berhasil diinput');
     }
 
     /**
@@ -56,7 +78,9 @@ class PenggunaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Pengguna::find($id);
+        
+        return view('pengguna.edit', compact('data'));
     }
 
     /**
@@ -68,7 +92,21 @@ class PenggunaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Pengguna::find($id)->update($request->all());
+
+        $messages           = [
+            'required'  => 'mohon :attribute di isi',
+            'min'       => 'isilah :attribute minimal :min karakter',
+            'max'       => ':attribute maksimal :max karakter',
+        ];
+
+        $validateData       = $request->validate([
+            'nama'              => 'required|max:50',
+            'email'             => 'required|max:30|email|unique:pengguna,email',
+            'password'          => 'required',
+        ],$messages);
+
+        return redirect('/pengguna')->with('success', 'Data berhasil diedit');
     }
 
     /**
@@ -79,6 +117,8 @@ class PenggunaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pengguna::find($id)->delete();
+
+        return redirect('/pengguna')->with('success', 'Data berhasil dihapus');
     }
 }

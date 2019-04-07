@@ -13,6 +13,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('orangtua.index') }}"><i class="fas fa-fw fa-users"></i>Orang Tua</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pengguna.index') }}"><i class="fas fa-fw fa-hand-paper"></i>Pengguna</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
