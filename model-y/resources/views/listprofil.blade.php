@@ -31,7 +31,7 @@
 		      <td>
 		      	<!-- Button trigger modal -->
 		      	<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#{{$row->depan}}">
-		      		Edit
+		      		Show Avatar
 		      	</button>
 		      	<!-- Modal -->
 		      	<div class="modal fade" id="{{$row->depan}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

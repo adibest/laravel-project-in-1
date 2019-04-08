@@ -6,28 +6,30 @@
 </head>
 <body>
 
-	<div class="container">
+	<div class="container text-center">
 		<div class="jumbotron">
 			<a href="/profil">
 				<h1>Profil</h1>
 			</a>
 		</div>
 		<form method="post" action="{{ route('profil.store') }}">
+			@csrf
 			<div class="form-row">
-				<div class="row-auto">
+				<div class="col">
 					<input type="text" name="depan" class="form-control" placeholder="Nama Depan">
 				</div>
-				<div class="row-auto">
+				<div class="col">
 					<input type="text" name="belakang" class="form-control" placeholder="Nama Belakang">
 				</div>
-				<div class="row-auto">
+				<div class="col">
 					<input type="text" name="alamat" class="form-control" placeholder="Alamat">
 				</div>
-				<div class="row-auto">
+				<div class="col text-left">
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</form>
+		<br>
 		<a href="{{ route('profil.index') }}" class="btn btn-sm btn-primary">List</a>
 	</div>
 

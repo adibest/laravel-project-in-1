@@ -38,7 +38,7 @@ class ProfilController extends Controller
     public function store(Request $request)
     {
         Profil::create($request->all());
-        return redirect('/listprofil');
+        return redirect('/profil');
     }
 
     /**
