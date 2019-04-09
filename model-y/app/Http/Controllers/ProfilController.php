@@ -37,6 +37,10 @@ class ProfilController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'file' => 'required|image|max:2000'
+        ]);
+
         // Profil::create($request->all());
         $profil = new Profil;
         $profil->depan = $request->depan;
