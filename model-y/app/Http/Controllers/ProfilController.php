@@ -37,7 +37,27 @@ class ProfilController extends Controller
      */
     public function store(Request $request)
     {
-        Profil::create($request->all());
+        // Profil::create($request->all());
+        $profil = new Profil;
+        $profil->depan = $request->depan;
+        $profil->belakang = $request->belakang;
+        $profil->alamat = $request->alamat;
+
+        $nama_file = $request->file('file');
+        $path = $nama_file->store('public/files');
+        $profil->file = $path;
+
+        // mengambil nama asli file
+        $request->file('file')->getClientOriginalName();
+        // format file
+        $request->file('file')->getClientOriginalExtension();
+        // ukuran file
+        $request->file('file')->getClientSize();
+
+        $profil->save();
+
+        // dd($nama_file); for testing
+
         return redirect('/profil');
     }
 

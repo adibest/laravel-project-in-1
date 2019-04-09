@@ -10,27 +10,33 @@
 		<div class="jumbotron">
 			<a href="/profil">
 				<h1>Profil</h1>
+				<a href="{{ route('profil.index') }}" class="btn btn-sm btn-primary">List</a>
 			</a>
 		</div>
-		<form method="post" action="{{ route('profil.store') }}">
+		<form method="post" action="{{ route('profil.store') }}" enctype="multipart/form-data">
 			@csrf
 			<div class="form-row">
-				<div class="col">
+				<div class="col-auto">
 					<input type="text" name="depan" class="form-control" placeholder="Nama Depan">
 				</div>
-				<div class="col">
+				<div class="col-auto">
 					<input type="text" name="belakang" class="form-control" placeholder="Nama Belakang">
 				</div>
-				<div class="col">
+				<div class="col-auto">
 					<input type="text" name="alamat" class="form-control" placeholder="Alamat">
 				</div>
-				<div class="col text-left">
+			</div>
+			<div class="form-row mt-3">
+				<div class="col-6">
+					<input type="file" class="form-control-file" name="file">
+				</div>
+				<div class="col-4 text-left">
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</div>
 			</div>
 		</form>
 		<br>
-		<a href="{{ route('profil.index') }}" class="btn btn-sm btn-primary">List</a>
+		
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

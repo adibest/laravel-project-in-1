@@ -9,11 +9,13 @@
 	<div class="container text-center">
 		<div class="jumbotron">
 			<h1>List Profil</h1>
+			<a href="{{route('profil.create')}}" class="btn btn-primary btn-sm">Tambah Profile</a>
 		</div>
 		<table class="table">
 		  <thead>
 		    <tr>
 		      <th scope="col">#</th>
+		      <th scope="col">Image</th>
 		      <th scope="col">Nama Lengkap</th>
 		      <th scope="col">Alamat</th>
 		      <th scope="col">Avatar</th>
@@ -26,6 +28,7 @@
 		  	@foreach($avas as $row)
 		    <tr>
 		      <th scope="row">{{ $no++ }}</th>
+		      <td>okoc</td>
 		      <td>{{ $row->nama }}</td>
 		      <td>{{ $row->alamat }}</td>
 		      <td>
@@ -44,7 +47,8 @@
 		      	        </button>
 		      	      </div>
 		      	      <div class="modal-body text-center">
-		      	          <img src="{{ Avatar::create($row->nama)->toBase64() }}" class="img-fluid"/>
+		      	          {{-- <img src="{{ Avatar::create($row->nama)->toBase64() }}" class="img-fluid"/> --}}
+		      	          <img style="max-width: 300px;" class="col-3" src="{{ Storage::url($row->file) }}">
 		      	      </div>
 		      	    </div>
 		      	  </div>
@@ -54,7 +58,7 @@
 		    @endforeach
 		  </tbody>
 		</table>
-		<a href="{{route('profil.create')}}" class="btn btn-primary btn-sm">Profile</a>
+		
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
