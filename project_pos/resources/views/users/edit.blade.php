@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Categories')
+@section('title', 'Edit Users')
 
 @section('content')
 
@@ -8,15 +8,23 @@
 		<div class="col-md-8">
 			<div class="panel">
 				<div class="panel-heading">
-					<h3>Edit Category</h3>
+					<h3>Edit User</h3>
 				</div>
-				<form method="post" action="{{ route('categories.update', $data->id) }}">
+				<form method="post" action="{{ route('users.update', $data->id) }}">
 
 					@csrf
 					@method('PUT')
 					<div class="panel-body">
 						<label>Nama</label>
 						<input type="text" name="name" class="form-control" value="{{ $data->name }}">
+					</div>
+					<div class="panel-body">
+						<label>Email</label>
+						<input type="email" name="email" class="form-control" value="{{ $data->email }}">
+					</div>
+					<div class="panel-body">
+						<label>Password</label>
+						<input type="password" name="password" class="form-control" value="{{ $data->password }}">
 					</div>
 					<div class="panel-body">
 						<button type="submit">Submit</button>

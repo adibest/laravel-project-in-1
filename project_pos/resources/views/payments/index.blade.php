@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Categories')
+@section('title', 'Payments')
 
 @section('content')
 
@@ -10,8 +10,8 @@
 			<!-- BASIC TABLE -->
 			<div class="panel">
 				<div class="panel-heading">
-					<h3>Categories List</h3>
-					<a class="btn btn-primary pull-right" href="{{ route('categories.create') }}">Create</a>
+					<h3>Payments List</h3>
+					<a class="btn btn-primary pull-right" href="{{ route('payments.create') }}">Create</a>
 				</div>
 				<div class="panel-body">
 					<table class="table table-condensed">
@@ -26,15 +26,15 @@
 						@php
 							$no = 1;
 						@endphp
-						@foreach($data as $category)
+						@foreach($data as $payment)
 						<tbody>
 							<tr>
 								<td>{{ $no++ }}</td>
-								<td>{{ $category->name }}</td>
-								<td>{{ $category->created_at }}</td>
+								<td>{{ $payment->name }}</td>
+								<td>{{ $payment->created_at }}</td>
 								<td>
-									<form method="post" action="{{ route('categories.destroy', $category->id) }}">
-										<a class="btn btn-sm btn-primary" href="{{ route('categories.edit', $category->id) }}">Edit</a>
+									<form method="post" action="{{ route('payments.destroy', $payment->id) }}">
+										<a class="btn btn-sm btn-primary" href="{{ route('payments.edit', $payment->id) }}">Edit</a>
 										@csrf
 										@method('DELETE')
 										<button class="btn btn-sm btn-danger" type="submit">Delete</button>

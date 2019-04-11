@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Categories')
+@section('title', 'Create Payments')
 
 @section('content')
 
@@ -8,15 +8,15 @@
 		<div class="col-md-8">
 			<div class="panel">
 				<div class="panel-heading">
-					<h3>Edit Category</h3>
+					<h3>Create Payment</h3>
 				</div>
-				<form method="post" action="{{ route('categories.update', $data->id) }}">
+				<form method="post" action="{{ route('payments.store') }}">
 
 					@csrf
-					@method('PUT')
+
 					<div class="panel-body">
 						<label>Nama</label>
-						<input type="text" name="name" class="form-control" value="{{ $data->name }}">
+						<input type="text" name="name" class="form-control">
 					</div>
 					<div class="panel-body">
 						<button type="submit">Submit</button>
@@ -25,5 +25,6 @@
 			</div>
 		</div>
 	</div>
+
 
 @endsection

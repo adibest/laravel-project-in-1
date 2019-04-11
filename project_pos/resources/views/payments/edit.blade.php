@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Categories')
+@section('title', 'Edit Payments')
 
 @section('content')
 
@@ -8,9 +8,9 @@
 		<div class="col-md-8">
 			<div class="panel">
 				<div class="panel-heading">
-					<h3>Edit Category</h3>
+					<h3>Edit Payment</h3>
 				</div>
-				<form method="post" action="{{ route('categories.update', $data->id) }}">
+				<form method="post" action="{{ route('payments.update', $data->id) }}">
 
 					@csrf
 					@method('PUT')
