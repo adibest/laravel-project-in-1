@@ -17,6 +17,7 @@ class CreateOrderDetailsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('order_id');
+            $table->unsignedInteger('product_id');
             $table->string('product_name');
             $table->string('product_price');
             $table->integer('quantity');
@@ -24,6 +25,7 @@ class CreateOrderDetailsTable extends Migration
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
