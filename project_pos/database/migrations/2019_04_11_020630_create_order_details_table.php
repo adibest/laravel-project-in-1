@@ -19,7 +19,7 @@ class CreateOrderDetailsTable extends Migration
             $table->unsignedInteger('order_id');
             $table->unsignedInteger('product_id');
             $table->string('product_name');
-            $table->string('product_price');
+            $table->integer('product_price');
             $table->integer('quantity');
             $table->string('note');
             $table->timestamps();

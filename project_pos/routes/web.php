@@ -23,4 +23,5 @@ Route::prefix('admin')->group(function () {
 	Route::resource('/payments', 'PaymentController');
 	Route::resource('/users', 'UserController');
 	Route::resource('/products', 'ProductController');
+	Route::resource('/orders', 'OrderController');
 });

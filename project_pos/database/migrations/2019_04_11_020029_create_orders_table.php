@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('table_number');
-            $table->integer('total');
+            $table->integer('total')->nullable();
             $table->unsignedInteger('payment_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
