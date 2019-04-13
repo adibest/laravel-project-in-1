@@ -1,21 +1,68 @@
-<div id="sidebar-nav" class="sidebar">
-			<div class="sidebar-scroll">
-				<nav>
-					<ul class="nav">
-						<li><a href="{{ url('admin/') }}" class="{{ Request::is('admin') ? 'active' : '' }}"><i class="fa fa-home"></i> <span>Home</span></a></li>
-						<li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="fa fa-product-hunt"></i> <span>Products</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-							<div id="subPages" class="collapse ">
-								<ul class="nav">
-									<li><a href="{{ route('categories.index') }}" class="{{ Request::is('admin/categories') || Request::is('admin/categories/*') ? 'active' : '' }}">Categories</a></li>
-									<li><a href="{{ route('products.index') }}" class="{{ Request::is('admin/products') || Request::is('admin/products/*') ? 'active' : '' }}">Items</a></li>
-								</ul>
-							</div>
-						</li>
-						<li><a href="{{ route('orders.index') }}" class="{{ Request::is('admin/orders') || Request::is('admin/orders/*') ? 'active' : '' }}"><i class="fa fa-shopping-cart"></i> <span>Orders</span></a></li>
-						<li><a href="{{ route('payments.index') }}" class="{{ Request::is('admin/payments') || Request::is('admin/payments/*') ? 'active' : '' }}"><i class="fa fa-credit-card"></i> <span>Payments</span></a></li>
-						<li><a href="{{ route('users.index') }}" class="{{ Request::is('admin/users') || Request::is('admin/users/*') ? 'active' : '' }}"><i class="fa fa-users"></i> <span>Users</span></a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+<section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Alexander Pierce</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Home</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('categories.index') }}"><i class="fa fa-circle-o"></i> Categories</a></li>
+            <li><a href="{{ route('products.index') }}"><i class="fa fa-circle-o"></i> Items</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{ route('orders.index') }}">
+            <i class="fa fa-th"></i> <span>Orders</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('payments.index') }}">
+            <i class="fa fa-calendar"></i> <span>Payemnts</span>
+            <span class="pull-right-container">
+
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('users.index') }}">
+            <i class="fa fa-calendar"></i> <span>Users</span>
+            <span class="pull-right-container">
+
+            </span>
+          </a>
+        </li>
+        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+        <li class="header">LABELS</li>
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+      </ul>
+    </section>
