@@ -23,9 +23,17 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+        <li>
+          <a href="{{ url('admin/') }}">
+            <i class="fa fa-home"></i> <span>Home</span>
+            <span class="pull-right-container">
+
+            </span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Home</span>
+            <i class="fa fa-tags"></i> <span>Product</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -37,7 +45,7 @@
         </li>
         <li>
           <a href="{{ route('orders.index') }}">
-            <i class="fa fa-th"></i> <span>Orders</span>
+            <i class="fa fa-shopping-cart"></i> <span>Orders</span>
             <span class="pull-right-container">
               
             </span>
@@ -45,7 +53,7 @@
         </li>
         <li>
           <a href="{{ route('payments.index') }}">
-            <i class="fa fa-calendar"></i> <span>Payemnts</span>
+            <i class="fa fa-credit-card"></i> <span>Payments</span>
             <span class="pull-right-container">
 
             </span>
@@ -53,13 +61,12 @@
         </li>
         <li>
           <a href="{{ route('users.index') }}">
-            <i class="fa fa-calendar"></i> <span>Users</span>
+            <i class="fa fa-users"></i> <span>Users</span>
             <span class="pull-right-container">
 
             </span>
           </a>
         </li>
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>

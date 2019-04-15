@@ -5,16 +5,16 @@
 @section('content')
 
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-12">
 
 			<!-- BASIC TABLE -->
-			<div class="panel">
-				<div class="panel-heading">
+			<div class="box">
+				<div class="box-header with-border">
 					<h3>Order Details List</h3>
-					<a class="btn btn-primary pull-right" href="{{ route('order_details.create') }}">Create</a>
+					<span><a class="btn btn-primary pull-right" href="{{ route('order_details.create') }}">Create</a></span>
 				</div>
-				<div class="panel-body">
-					<table class="table table-condensed">
+				<div class="box-body">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -64,3 +64,7 @@
 
 
 @endsection
+
+@foreach( $order->order_detail as $detail ) {{-- because has Many --}}
+
+@endforeach

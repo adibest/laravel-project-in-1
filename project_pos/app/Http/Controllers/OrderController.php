@@ -46,11 +46,33 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = Order::create([
-            'table_number' => $request->input('table_number'),
-            'total' => $request->input('total'),
-            'payment_id' => $request->input('payment_id'),
-            'user_id' => $request->input('user_id'),
+        $product       = Product::find($request->product_id);
+        $quantity      = $request->quantity;
+        $count         = count($request->product_id);
+        $note          = $request->note;
+
+        $order         = $request->only('table_number', 'total', 'payment_id', 'user_id');
+        $orderRan      = Order::create($order); 
+
+        for ($i=0; $i < $count; $i++) { 
+            $request->merge([
+                'order_id'      => $orderRan->id,
+                'product_id'    => $product[$i]->id,
+                'quantity'      => $quantity[$i],
+                'note'          => $note[$i],
+                'subtotal'      => $product[$i]->price * $quantity[$i],
+            ]);
+
+            $orderDetail        = $request->only('order_id', 'product_id' , 'quantity', 'note', 'subtotal');
+            OrderDetail::create($orderDetail);
+        
+        }
+
+
+        $orderTotal = OrderDetail::where('order_id', $orderRan->id)->sum('subtotal');
+
+        Order::find($orderRan->id)->update([
+            'total' => $orderTotal,
         ]);
 
         // Redirect or whatever you want to do here

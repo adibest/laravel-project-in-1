@@ -27,6 +27,10 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+  {{-- Vue script --}}
+  {{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -116,6 +120,39 @@
   $(document).ready(function () {
     $('.sidebar-menu').tree()
   })
+</script>
+{{-- Form dynamic vue --}}
+<script>
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            invoice_products: [{
+                product_id: '',
+                quantity: '',
+                note: ''
+            }]
+        },
+        methods:{
+            deleteRow(index, invoice_product) {
+                var idx = this.invoice_products.indexOf(invoice_product);
+                console.log(idx, index);
+                if (idx > -1) {
+                    this.invoice_products.splice(idx, 1);
+                }
+                this.calculateTotal();
+            },
+            addNewRow() {
+                this.invoice_products.push({
+                    product_id: '',
+                    quantity: '',
+                    note: ''
+                });
+            }
+        }
+    });  
+
+
 </script>
 </body>
 </html>

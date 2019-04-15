@@ -8,13 +8,13 @@
 		<div class="col-md-12">
 
 			<!-- BASIC TABLE -->
-			<div class="panel">
-				<div class="panel-heading">
+			<div class="box">
+				<div class="box-header with-border">
 					<h3>Orders List</h3>
 					<a class="btn btn-primary pull-right" href="{{ route('orders.create') }}">Create</a>
 				</div>
-				<div class="panel-body">
-					<table class="table table-condensed">
+				<div class="box-body">
+					<table class="table table-bordered">
 						<thead>
 							<tr>
 								<th>#</th>
