@@ -18,9 +18,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $data = Order::orderBy('created_at', 'desc')->get();
+        // $data = Order::orderBy('created_at', 'desc')->get();
+        $data = Order::all();
+        $datas = OrderDetail::orderBy('id')->get();
 
-        return view('orders.index', compact('data'));
+        return view('orders.index', compact('data', 'datas'));
     }
 
     /**
