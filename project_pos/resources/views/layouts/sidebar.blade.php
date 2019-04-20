@@ -31,7 +31,7 @@
             </span>
           </a>
         </li>
-        <li class="treeview {{ Request::is('admin/categories') || Request::is('admin/items') ? 'active' : '' }}">
+        <li class="treeview {{ Request::is('admin/categories') || Request::is('admin/items') ? 'active menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-tags"></i> <span>Product</span>
             <span class="pull-right-container">

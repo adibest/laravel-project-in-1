@@ -4,9 +4,6 @@
 
 @section('content')
 
-	<div class="row">
-		<div class="col-md-12">
-
 			<!-- BASIC TABLE -->
 			<div class="box">
 				<div class="box-header with-border">
@@ -47,9 +44,6 @@
 				</div>
 			</div>
 			<!-- END BASIC TABLE -->
-
-		</div>
-	</div>
 
 
 @endsection

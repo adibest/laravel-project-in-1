@@ -4,8 +4,6 @@
 
 @section('content')
 
-	<div class="row">
-		<div class="col-md-12">
 
 			<!-- BASIC TABLE -->
 			<div class="box">
@@ -97,7 +95,7 @@
 			        							<td>{{ $details->product->name }}</td>
 			        							<td>{{ $details->quantity }}</td>
 			        							<td>{{ $details->note }}</td>
-			        							<td>{{ $details->subtotal }}</td>
+			        							<td>Rp{{ format_uang($details->subtotal) }}</td>
 			        							<td>{{ $details->created_at }}</td>
 			        							{{-- <td>
 			        								<form method="post" action="{{ route('order_details.destroy', $details->id) }}">
@@ -129,8 +127,6 @@
 			</div>
 			<!-- /.modal -->
 
-		</div>
-	</div>
 
 
 @endsection
