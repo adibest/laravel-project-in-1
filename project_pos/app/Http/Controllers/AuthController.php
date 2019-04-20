@@ -21,7 +21,7 @@ class AuthController extends Controller
 	{
 		$credentials = $request->only('email', 'password');
 		$check =  Auth::attempt($credentials);
-     dd($check);
+
 		if ($check) {
     		return redirect()->intended('/admin/home');//intended = diutamakan
     	} else {
