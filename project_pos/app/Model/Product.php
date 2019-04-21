@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $table = 'products';
+    use SoftDeletes;
 
-    protected $dates = ['deleted_at'];
+    protected $table = 'products';
 
     protected $fillable = [
     	'name', 'category_id', 'status', 'price'
     ];
+    
+    protected $dates = ['deleted_at'];
 
     public function category()
     {
