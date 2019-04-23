@@ -35,24 +35,6 @@
 							</select>
 						</div>
 					</div>
-{{-- 					<div class="col">
-						<div class="box-body col col-sm-4">
-							<label>Item Name</label>
-							<select class="form-control" name="product_id">
-								@foreach($product as $item)
-								<option value="{{ $item->id }}">{{ $item->name }}</option>
-								@endforeach
-							</select>
-						</div>
-						<div class="box-body col col-sm-4">
-							<label>Quantity</label>
-							<input type="text" name="quantity" class="form-control">
-						</div>
-						<div class="box-body col col-sm-4">
-							<label>Note</label>
-							<input type="text" name="note" class="form-control">
-						</div>
-					</div> --}}
 
 					{{-- for vue form dynamic --}}
 					<div id="app">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Payment;
+use App\Http\Requests\PaymentStoreRequest;
 
 class PaymentController extends Controller
 {
@@ -40,7 +41,7 @@ class PaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaymentStoreRequest $request)
     {
         Payment::create($request->all());
 

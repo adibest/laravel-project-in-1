@@ -16,7 +16,10 @@
 
 					<div class="box-body">
 						<label>Nama</label>
-						<input type="text" name="name" class="form-control">
+						<input type="text" name="name" class="form-control" value="{{ old('name') }}">
+						@if($errors->has('name'))
+							<span class="text-danger">{{ $errors->first('name') }}</span>
+						@endif
 					</div>
 					<div class="box-body">
 						<button class="btn btn-default" type="submit">Submit</button>

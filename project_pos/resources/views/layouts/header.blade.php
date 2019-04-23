@@ -138,7 +138,10 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{ url('/admin/logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                  <form action="{{ route('auth.logout') }}" method="post">
+                      @csrf
+                      <button type="submit" class="btn btn-default btn-flat">Sign out</button>
+                  </form>
                 </div>
               </li>
             </ul>

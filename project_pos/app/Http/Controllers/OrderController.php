@@ -57,6 +57,7 @@ class OrderController extends Controller
         $quantity      = $request->quantity;
         $count         = count($request->product_id);
         $note          = $request->note;
+        $item          = $request->product_id;
 
         $order         = $request->only('table_number', 'total', 'payment_id', 'user_id');
         $orderRan      = Order::create($order); 
@@ -64,7 +65,7 @@ class OrderController extends Controller
         for ($i=0; $i < $count; $i++) { 
             $request->merge([
                 'order_id'      => $orderRan->id,
-                'product_id'    => $product[$i]->id,
+                'product_id'    => $item[$i],
                 'quantity'      => $quantity[$i],
                 'note'          => $note[$i],
                 'subtotal'      => $product[$i]->price * $quantity[$i],

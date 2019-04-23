@@ -25,10 +25,16 @@
 					<div class="panel-body">
 						<label>Nama</label>
 						<input type="text" name="name" class="form-control">
+						@if($errors->has('name'))
+							<span class="text-danger">{{ $errors->first('name') }}</span>
+						@endif
 					</div>
 					<div class="panel-body">
 						<label>Price</label>
 						<input type="text" name="price" class="form-control">
+						@if($errors->has('price'))
+							<span class="text-danger">{{ $errors->first('price') }}</span>
+						@endif
 					</div>
 					<div class="panel-body">
 						<label>Status</label>
@@ -40,6 +46,9 @@
 							<input name="status" value="0" type="radio">
 							<span><i></i>Habis</span>
 						</label>
+						@if($errors->has('status'))
+							<span class="text-danger">{{ $errors->first('status') }}</span>
+						@endif
 					</div>
 					<div class="panel-body">
 						<button class="btn btn-default" type="submit">Submit</button>
