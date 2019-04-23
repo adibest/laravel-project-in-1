@@ -49,6 +49,69 @@
 										@method('DELETE')
 										<button class="btn btn-sm btn-danger" type="submit">Delete</button>
 									</form>
+									<!-- END BASIC TABLE -->
+
+									<div class="modal fade" id="{{ $order->id }}">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span></button>
+									        <h4 class="modal-title">Default Modal</h4>
+									      </div>
+									      <div class="modal-body">
+									        <div class="row">
+									        	<div class="col-md-12">
+
+									        		<!-- BASIC TABLE -->
+									        		<div class="box">
+									        			<div class="box-header with-border">
+									        				<h3>Order Details List</h3>
+									        			</div>
+									        			<div class="box-body">
+									        				<table class="table table-bordered">
+									        					<thead>
+									        						<tr>
+									        							<th>Order Id</th>
+									        							<th>Product Id</th>
+									        							<th>Quantity</th>
+									        							<th>Note</th>
+									        							<th>Subtotal</th>
+									        							<th>Created At</th>
+									        							{{-- <th>Action</th> --}}
+									        						</tr>
+									        					</thead>
+									        					@foreach($order->order_detail as $details)
+									        					<tbody>
+									        						<tr>
+									        							<td>{{ $details->order_id }}</td>
+									        							<td>{{ $details->product_id}}</td>
+									        							<td>{{ $details->quantity }}</td>
+									        							<td>{{ $details->note }}</td>
+									        							<td>Rp{{ format_uang($details->subtotal) }}</td>
+									        							<td>{{ $details->created_at }}</td>
+									        						</tr>
+									        					</tbody>
+									        					@endforeach
+									        				</table>
+									        			</div>
+									        		</div>
+									        		<!-- END BASIC TABLE -->
+
+									        	</div>
+									        </div>
+									      </div>
+									
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+									        <button type="button" class="btn btn-primary">Save changes</button>
+									      </div>
+									    </div>
+									    <!-- /.modal-content -->
+									  </div>
+									  <!-- /.modal-dialog -->
+									</div>
+									<!-- /.modal -->
 								</td>
 							</tr>
 						</tbody>
@@ -56,76 +119,7 @@
 					</table>
 				</div>
 			</div>
-			<!-- END BASIC TABLE -->
-
-			<div class="modal fade" id="{{ $order->id }}">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title">Default Modal</h4>
-			      </div>
-			      <div class="modal-body">
-			        <div class="row">
-			        	<div class="col-md-12">
-
-			        		<!-- BASIC TABLE -->
-			        		<div class="box">
-			        			<div class="box-header with-border">
-			        				<h3>Order Details List</h3>
-			        			</div>
-			        			<div class="box-body">
-			        				<table class="table table-bordered">
-			        					<thead>
-			        						<tr>
-			        							<th>Order Id</th>
-			        							<th>Product Id</th>
-			        							<th>Quantity</th>
-			        							<th>Note</th>
-			        							<th>Subtotal</th>
-			        							<th>Created At</th>
-			        							{{-- <th>Action</th> --}}
-			        						</tr>
-			        					</thead>
-			        					@foreach($order->order_detail as $details)
-			        					<tbody>
-			        						<tr>
-			        							<td>{{ $details->order_id }}</td>
-			        							<td>{{ $details->product->name }}</td>
-			        							<td>{{ $details->quantity }}</td>
-			        							<td>{{ $details->note }}</td>
-			        							<td>Rp{{ format_uang($details->subtotal) }}</td>
-			        							<td>{{ $details->created_at }}</td>
-			        							{{-- <td>
-			        								<form method="post" action="{{ route('order_details.destroy', $details->id) }}">
-			        									<a class="btn btn-sm btn-primary" href="{{ route('order_details.edit', $details->id) }}">Edit</a>
-			        									@csrf
-			        									@method('DELETE')
-			        									<button class="btn btn-sm btn-danger" type="submit">Delete</button>
-			        								</form>
-			        							</td> --}}
-			        						</tr>
-			        					</tbody>
-			        					@endforeach
-			        				</table>
-			        			</div>
-			        		</div>
-			        		<!-- END BASIC TABLE -->
-
-			        	</div>
-			        </div>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			    <!-- /.modal-content -->
-			  </div>
-			  <!-- /.modal-dialog -->
-			</div>
-			<!-- /.modal -->
+			
 
 
 
