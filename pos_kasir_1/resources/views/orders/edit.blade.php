@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Create Order</title>
+	<title>Edit Order</title>
 </head>
 <body>
 
 	<div id="app">
 
-		<h2>CReate Order</h2>
+		<h2>Edit Order</h2>
 
-		<form method="post" action="{{ route('orders.store') }}">
-			@csrf
+		<form method="post" action="{{ route('orders.update', $order->id) }}">
+			@csrf @method('PUT')
 			<hr>
 			<h4>Order</h4>
 
 			<p>
 				Table Number:
-				<input type="number" name="table_number">
+				<input type="number" name="table_number" value="{{ $order->table_number }}">
 			</p>
 			<p>
 				Payment:
 				<select name="payment_id">
 					@foreach($payments as $payment)
-					<option value="{{ $payment->id }}">{{ $payment->name }}</option>
+					<option 
+						value="{{ $payment->id }}"
+						{{ $order->payment_id == $payment->id ? 'selected' : '' }}
+					>
+						{{ $payment->name }}
+					</option>
 					@endforeach
 				</select>
 			</p>
@@ -116,6 +121,22 @@
 					.map( order => order.subtotal )
 					.reduce( (prev, next) => prev + next );
 				},
+			},
+
+			created() {
+				var orders = [];
+
+				@foreach($order->orderDetail as $index => $detail)
+
+					orders[ {{$index}} ] = {
+						product_id: {{ $detail->product_id }},
+						quantity: {{ $detail->quantity }},
+						subtotal: {{ $detail->subtotal }},
+					};
+
+				@endforeach
+
+				this.orders = orders;
 			},
 		});
 	</script>

@@ -27,7 +27,12 @@
 				<td>{{ $order->total }}</td>
 				<td>{{ $order->user->name }}</td>
 				<td>
+					<form method="post" action="{{ route('orders.destroy', $order->id) }}">
+						@csrf @method('DELETE')
 					<a href="{{ route('orders.show', $order->id) }}">Detail</a>
+					<a href="{{ route('orders.edit', $order->id) }}">Edit</a>
+					<button>Delete</button>
+					</form>
 				</td>
 			</tr>
 			@endforeach
