@@ -24,7 +24,7 @@ class OrderController extends Controller
     public function index()
     {
         // $data = Order::orderBy('created_at', 'desc')->get();
-        $data = Order::all();
+        $data = Order::orderBy('created_at', 'desc')->get();
         $datas = OrderDetail::orderBy('id')->get();
 
         return view('orders.index', compact('data', 'datas'));
@@ -110,7 +110,12 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $payment = Payment::all();
+        $user = User::all();
+        $product = Product::all();
+        $order = Order::find($id);
+
+        return view('orders.edit', compact('payment', 'user', 'product', 'order'));
     }
 
     /**
@@ -133,6 +138,9 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        OrderDetail::where('order_id', $id)->delete();
+        Order::find($id)->delete();
+
+        return redirect('/admin/orders');
     }
 }

@@ -72,7 +72,6 @@
 									        				<table class="table table-bordered">
 									        					<thead>
 									        						<tr>
-									        							<th>Order Id</th>
 									        							<th>Product Id</th>
 									        							<th>Quantity</th>
 									        							<th>Note</th>
@@ -84,7 +83,6 @@
 									        					@foreach($order->order_detail as $details)
 									        					<tbody>
 									        						<tr>
-									        							<td>{{ $details->order_id }}</td>
 									        							<td>{{ $details->product->name}}</td>
 									        							<td>{{ $details->quantity }}</td>
 									        							<td>{{ $details->note }}</td>
