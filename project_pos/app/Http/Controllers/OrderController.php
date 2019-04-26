@@ -59,9 +59,13 @@ class OrderController extends Controller
         $note          = $request->note;
         $item          = $request->product_id;
 
-        $order         = $request->only('table_number', 'total', 'payment_id', 'user_id');
-        $orderRan      = Order::create($order); 
+        $request->merge([
+            'user_id'  => auth()->user()->id,
+        ]);
 
+        $order         = $request->only('table_number', 'payment_id', 'user_id');
+        $orderRan      = Order::create($order); 
+        
         for ($i=0; $i < $count; $i++) { 
             $request->merge([
                 'order_id'      => $orderRan->id,

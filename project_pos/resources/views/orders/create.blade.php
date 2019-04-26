@@ -14,11 +14,11 @@
 
 					@csrf
 					<div class="col">
-						<div class="box-body col col-sm-4">
+						<div class="box-body col col-sm-6">
 							<label>Table Number</label>
 							<input type="text" name="table_number" class="form-control">
 						</div>
-						<div class="box-body col col-sm-4">
+						<div class="box-body col col-sm-6">
 							<label>Payment</label>
 							<select class="form-control" name="payment_id">
 								@foreach($payment as $item)
@@ -26,14 +26,14 @@
 								@endforeach
 							</select>
 						</div>
-						<div class="box-body col col-sm-4">
+						{{-- <div class="box-body col col-sm-4">
 							<label>User</label>
 							<select class="form-control" name="user_id">
 								@foreach($user as $item)
 								<option value="{{ $item->id }}">{{ $item->name }}</option>
 								@endforeach
 							</select>
-						</div>
+						</div> --}}
 					</div>
 
 					{{-- for vue form dynamic --}}
