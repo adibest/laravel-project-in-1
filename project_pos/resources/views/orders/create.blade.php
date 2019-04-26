@@ -10,6 +10,7 @@
 				<div class="box-header">
 					<h3>Create Order</h3>
 				</div>
+				<div class="box-body">
 				<form method="post" action="{{ route('orders.store') }}">
 
 					@csrf
@@ -77,7 +78,7 @@
 
 
 
-					<div class="box-body">
+					
 						<button class="btn btn-default" type="submit">Submit</button>
 					</div>
 				</form>

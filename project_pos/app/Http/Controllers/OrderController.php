@@ -42,7 +42,8 @@ class OrderController extends Controller
         $product = Product::all();
         $order = Order::all();
 
-        return view('orders.create', compact('payment', 'user', 'product', 'order'));
+        // return view('orders.create', compact('payment', 'user', 'product', 'order'));
+        return view('orders.create2', compact('payment', 'user', 'product', 'order'));
     }
 
     /**
@@ -53,39 +54,54 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $product       = Product::find($request->product_id);
-        $quantity      = $request->quantity;
-        $count         = count($request->product_id);
-        $note          = $request->note;
-        $item          = $request->product_id;
+        // $product       = Product::find($request->product_id);
+        // $quantity      = $request->quantity;
+        // $count         = count($request->product_id);
+        // $note          = $request->note;
+        // $item          = $request->product_id;
 
         $request->merge([
             'user_id'  => auth()->user()->id,
         ]);
 
-        $order         = $request->only('table_number', 'payment_id', 'user_id');
-        $orderRan      = Order::create($order); 
+        // $order         = $request->only('table_number', 'payment_id', 'user_id');
+        // $orderRan      = Order::create($order); 
         
-        for ($i=0; $i < $count; $i++) { 
-            $request->merge([
-                'order_id'      => $orderRan->id,
-                'product_id'    => $item[$i],
-                'quantity'      => $quantity[$i],
-                'note'          => $note[$i],
-                'subtotal'      => $product[$i]->price * $quantity[$i],
-            ]);
+        // for ($i=0; $i < $count; $i++) { 
+        //     $request->merge([
+        //         'order_id'      => $orderRan->id,
+        //         'product_id'    => $item[$i],
+        //         'quantity'      => $quantity[$i],
+        //         'note'          => $note[$i],
+        //         'subtotal'      => $product[$i]->price * $quantity[$i],
+        //     ]);
 
-            $orderDetail        = $request->only('order_id', 'product_id' , 'quantity', 'note', 'subtotal');
-            OrderDetail::create($orderDetail);
+        //     $orderDetail        = $request->only('order_id', 'product_id' , 'quantity', 'note', 'subtotal');
+        //     OrderDetail::create($orderDetail);
         
+        // }
+
+
+        // $orderTotal = OrderDetail::where('order_id', $orderRan->id)->sum('subtotal');
+
+        // Order::find($orderRan->id)->update([
+        //     'total' => $orderTotal,
+        // ]);
+
+        $dataOrder = $request->only('table_number', 'payment_id', 'user_id', 'total');
+        $order = Order::create($dataOrder);
+        $dataDetail = $request->only('product_id', 'quantity', 'subtotal', 'note');
+        $countDetail = count($dataDetail['product_id']);
+        for ($i=0; $i < $countDetail; $i++) { 
+            
+            $detail                 = new OrderDetail();
+            $detail->order_id       = $order->id;
+            $detail->product_id     = $dataDetail['product_id'][$i];
+            $detail->quantity       = $dataDetail['quantity'][$i];
+            $detail->subtotal       = $dataDetail['subtotal'][$i];
+            $detail->note           = $dataDetail['note'][$i];
+            $detail->save();
         }
-
-
-        $orderTotal = OrderDetail::where('order_id', $orderRan->id)->sum('subtotal');
-
-        Order::find($orderRan->id)->update([
-            'total' => $orderTotal,
-        ]);
 
         // Redirect or whatever you want to do here
         return redirect('admin/orders');
@@ -111,11 +127,10 @@ class OrderController extends Controller
     public function edit($id)
     {
         $payment = Payment::all();
-        $user = User::all();
         $product = Product::all();
         $order = Order::find($id);
 
-        return view('orders.edit', compact('payment', 'user', 'product', 'order'));
+        return view('orders.edit2', compact('payment', 'user', 'product', 'order'));
     }
 
     /**

@@ -100,7 +100,7 @@
   })
 </script>
 {{-- Form dynamic vue --}}
-<script>
+{{-- <script>
 
     var app = new Vue({
         el: "#app",
@@ -131,6 +131,7 @@
     });  
 
 
-</script>
+</script> --}}
+@yield('vue')
 </body>
 </html>
