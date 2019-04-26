@@ -138,6 +138,7 @@
 						product_id: {{ $detail->product_id }},
 						quantity: {{ $detail->quantity }},
 						subtotal: {{ $detail->subtotal }},
+						note: {{ $detail->note }},
 					};
 				@endforeach
 				this.orders = orders;
