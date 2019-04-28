@@ -27,4 +27,6 @@ Route::prefix('admin')->group(function () {
 	Route::resource('/users', 'UserController');
 	Route::resource('/products', 'ProductController');
 	Route::resource('/orders', 'OrderController');
+	Route::get('/filters', 'FilterController@index')->name('filters.index');
+	Route::post('/filters/show', 'FilterController@show')->name('filters.show');
 });

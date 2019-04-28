@@ -14,7 +14,8 @@
 
 						<div class="modal fade" id="filter">
 						  <div class="modal-dialog">
-						  	<form method="post" action="">	
+						  	<form method="post" action="{{ route('filters.show') }}">
+						  		@csrf
 							    <div class="modal-content">
 							      <div class="modal-header">
 							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
