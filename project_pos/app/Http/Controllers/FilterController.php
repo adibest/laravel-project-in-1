@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Order;
 use App\User;
+use PDF;
 
 class FilterController extends Controller
 {
@@ -33,5 +34,19 @@ class FilterController extends Controller
     	// dd($year, $user, $orders);
 
     	return view('filters.index', compact('orders'));
+    }
+
+    public function print()
+    {
+    	// $year 	= $request->year;
+    	// $month 	= $request->month;
+    	// $user 	= $request->user_id;
+
+    	// $orders = Order::where('user_id', $user)->whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
+    	$orders = Order::all();
+    	
+    	$pdf = PDF::loadview('filters.print',['orders'=>$orders]);
+    	// return $pdf->download('laporan-orders-pdf');
+    	return $pdf->stream();
     }
 }

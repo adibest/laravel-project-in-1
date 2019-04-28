@@ -29,4 +29,5 @@ Route::prefix('admin')->group(function () {
 	Route::resource('/orders', 'OrderController');
 	Route::get('/filters', 'FilterController@index')->name('filters.index');
 	Route::post('/filters/show', 'FilterController@show')->name('filters.show');
+	Route::get('/filters/print', 'FilterController@print')->name('filters.print');
 });
