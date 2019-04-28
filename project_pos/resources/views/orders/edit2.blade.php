@@ -64,7 +64,7 @@
 							</div>
 							<div class="box-body col col-sm-3">
 								<label>Note</label>
-								<input type="text" name="note[]" class="form-control" :value="order.note">
+								<input type="text" name="note[]" class="form-control" v-model="order.note">
 							</div>
 							<div class="box-body col col-sm-1">
 								<label>Delete</label>
