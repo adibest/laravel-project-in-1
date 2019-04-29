@@ -4,6 +4,7 @@
 
 @section('content')
 	<a href="{{ route('filters.print') }}" class="btn btn-danger" target="_blank">Print PDF</a>
+	<a href="{{ route('filters.export') }}" class="btn btn-danger" target="_blank">Export Excel</a>
 	<div class="col-xs-12 table-responsive">
 		<table class="table table-bordered">
 			<thead>

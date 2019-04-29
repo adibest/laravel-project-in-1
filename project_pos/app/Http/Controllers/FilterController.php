@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Model\Order;
 use App\User;
 use PDF;
+use App\Exports\OrdersExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
 
 class FilterController extends Controller
 {
@@ -44,9 +47,16 @@ class FilterController extends Controller
 
     	// $orders = Order::where('user_id', $user)->whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
     	$orders = Order::all();
+
+    	// dd($orders);
     	
     	$pdf = PDF::loadview('filters.print',['orders'=>$orders]);
     	// return $pdf->download('laporan-orders-pdf');
-    	return $pdf->stream();
+    	return $pdf->setPaper('a4', 'landscape')->stream();
+    }
+
+    public function export() 
+    {
+        return Excel::download(new OrdersExport, 'orders.xlsx');
     }
 }
