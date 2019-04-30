@@ -14,6 +14,14 @@ class OrdersExport implements FromView
     /**
     * @return \Illuminate\Support\Collection
     */
+
+    public function __construct($year, $month, $user)
+    {
+        $this->year = $year;
+        $this->month = $month;
+        $this->user = $user;
+    }
+
     public function collection(Request $request)
     {
     	$year 	= $request->year;
@@ -26,8 +34,16 @@ class OrdersExport implements FromView
 
     public function view(): View
     {
-        return view('filters.print', [
-            'orders' => Order::all()
-        ]);
+        if ($this->user == 0) {
+            return view('filters.print', [
+                'orders' => Order::all()
+            ]);
+        } else {
+            return view('filters.print', [
+                'orders' => Order::where([
+                    'user_id' => $this->user
+                ])->get()
+            ]);
+        }
     }
 }

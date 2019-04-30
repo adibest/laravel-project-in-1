@@ -30,6 +30,6 @@ Route::prefix('admin')->group(function () {
 	Route::get('/filters', 'FilterController@index')->name('filters.index');
 	Route::post('/filters/show', 'FilterController@show')->name('filters.show');
 	Route::post('/filters/print', 'FilterController@print')->name('filters.print');
-	Route::get('/filters/export', 'FilterController@export')->name('filters.export');
+	Route::post('/filters/export', 'FilterController@export')->name('filters.export');
 	Route::post('/orders/print', 'OrderController@print')->name('orders.print');
 });

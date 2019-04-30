@@ -9,6 +9,7 @@
 			<h3>Reports</h3>
 			<a class="btn btn-success pull-right" data-toggle="modal" data-target="#filter">Filter</a>
 			<a class="btn btn-warning pull-right" data-toggle="modal" data-target="#pdf">PDF</a>
+			<a class="btn btn-primary pull-right" data-toggle="modal" data-target="#excel">Excel</a>
 			<div class="modal fade" id="filter">
 			  <div class="modal-dialog">
 			  	{{-- filter nampilkan --}}
@@ -21,6 +22,14 @@
 			  <div class="modal-dialog">
 			  	{{-- filter nampilkan --}}
 			  	@include('filters.pdf')
+			  </div>
+			  <!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<div class="modal fade" id="excel">
+			  <div class="modal-dialog">
+			  	{{-- filter nampilkan --}}
+			  	@include('filters.excel')
 			  </div>
 			  <!-- /.modal-dialog -->
 			</div>

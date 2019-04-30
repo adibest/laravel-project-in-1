@@ -73,8 +73,30 @@ class FilterController extends Controller
 
     }
 
-    public function export() 
+    public function export(Request $request) 
     {
-        return Excel::download(new OrdersExport, 'orders.xlsx');
+        $year   = $request->year;
+        $month  = $request->month;
+        $user   = $request->user_id;
+
+        $users = User::all();
+        $orders  = new Order();
+
+        if ($year) {
+            $orders = $orders->whereYear('created_at', $year);
+        }
+        if ($month) {
+            $orders = $orders->whereMonth('created_at', $month);
+        }
+        if ($user) {
+            $orders = $orders->where('user_id', $user);
+        }
+        $orders = $orders->get();
+        $count = count($orders);
+        if ($count > 0) {
+            return Excel::download(new OrdersExport($year, $month, $user), 'repoerts.xlsx');        
+        } else {
+            return redirect('/admin/filters');
+        }
     }
 }
