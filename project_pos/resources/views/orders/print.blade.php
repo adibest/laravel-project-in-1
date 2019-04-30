@@ -19,14 +19,22 @@
 							{{-- <th>Action</th> --}}
 						</tr>
 					</thead>
-					@foreach($order->order_detail as $details)
+					@php
+						$no = 1;
+
+						function format_uang($angka){ 
+						    $hasil =  number_format($angka,2, ',' , '.'); 
+						    return $hasil; 
+						}
+					@endphp
+					@foreach($order_details as $details)
 					<tbody>
 						<tr>
 							<td>{{ $details->product->name}}</td>
 							<td>{{ $details->quantity }}</td>
 							<td>{{ $details->note }}</td>
 							<td>Rp{{ format_uang($details->subtotal) }}</td>
-							<td>{{ $details->user->name }}</td>
+							<td>{{ $details->user_id }}</td>
 							<td>{{ $details->created_at }}</td>
 						</tr>
 					</tbody>

@@ -184,12 +184,23 @@ class OrderController extends Controller
 
     public function print(Request $request, $id)
     {
-        $orders = Order::where('order_id', $id)->get();
+        // $order_details = OrderDetail::where('order_id', $id)->get();
+        $users = User::all();
+        $order_details = new OrderDetail();
 
-        $pdf = PDF::loadview('orders.print',[
-            'orders' => $orders
-        ]);
-        // return $pdf->download('laporan-orders-pdf');
-        return $pdf->setPaper('a4', 'landscape')->stream();
+        if ($id) {
+            $order_details = $order_details->where('order_id', $id);
+        }
+        $order_details = $order_details->get();
+        $count = count($order_details);
+        if ($count > 0) {
+            $pdf = PDF::loadView('orders.print', compact('order_details', 'users'));
+            return $pdf->setPaper('a4', 'landscape')->stream();            
+        } else {
+            return redirect('/admin/orders');
+        }
+
+        // $pdf = PDF::loadview('orders.print', compact('order_details', 'users'));
+        // return $pdf->setPaper('a4', 'landscape')->stream();
     }
 }

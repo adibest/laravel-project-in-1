@@ -51,6 +51,8 @@
 									</form>
 									<!-- END BASIC TABLE -->
 
+								<form action="{{ route('orders.print', $order->id) }}" method="post">
+									@csrf	
 									<div class="modal fade" id="{{ $order->id }}">
 									  <div class="modal-dialog">
 									    <div class="modal-content">
@@ -100,12 +102,9 @@
 									        </div>
 									      </div>
 									
-									      <div class="modal-footer">
-									      	<form action="{{ route('orders.print', $order->id) }}" method="post">
-									      	@csrf	
-										        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-										        <button type="submit" class="btn btn-primary">Print PDF</button>
-									      	</form>
+									      <div class="modal-footer">									      	
+									        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+									        <button type="submit" class="btn btn-primary">Print PDF</button>
 									      </div>
 									    </div>
 									    <!-- /.modal-content -->
@@ -113,6 +112,7 @@
 									  <!-- /.modal-dialog -->
 									</div>
 									<!-- /.modal -->
+								</form>
 								</td>
 							</tr>
 						</tbody>
