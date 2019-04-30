@@ -32,25 +32,27 @@ class FilterController extends Controller
     	$month 	= $request->month;
     	$user 	= $request->user_id;
 
+        $users = User::all();
+
 
     	$orders = Order::where('user_id', $user)->whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
     	// dd($year, $user, $orders);
 
-    	return view('filters.index', compact('orders'));
+    	return view('filters.index', compact('orders', 'users'));
     }
 
-    public function print()
+    public function print(Request $request)
     {
-    	// $year 	= $request->year;
-    	// $month 	= $request->month;
-    	// $user 	= $request->user_id;
+    	$year 	= $request->year;
+    	$month 	= $request->month;
+    	$user 	= $request->user_id;
 
-    	// $orders = Order::where('user_id', $user)->whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
+        //$orders = Order::where('user_id', $user)->get();
     	$orders = Order::all();
 
-    	// dd($orders);
-    	
-    	$pdf = PDF::loadview('filters.print',['orders'=>$orders]);
+    	$pdf = PDF::loadview('filters.print',[
+            'orders' => $orders
+        ]);
     	// return $pdf->download('laporan-orders-pdf');
     	return $pdf->setPaper('a4', 'landscape')->stream();
     }

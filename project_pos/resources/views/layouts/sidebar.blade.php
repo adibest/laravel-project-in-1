@@ -22,8 +22,8 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header {{ Request::is('/admin/home') ? 'active' : '' }}">MAIN NAVIGATION</li>
-        <li>
+        <li class="header">MAIN NAVIGATION</li>
+        <li class="{{ Request::is('admin/home') ? 'active' : '' }}">
           <a href="{{ url('admin/home') }}">
             <i class="fa fa-home"></i> <span>Home</span>
             <span class="pull-right-container">
@@ -31,7 +31,7 @@
             </span>
           </a>
         </li>
-        <li class="treeview {{ Request::is('admin/categories') || Request::is('admin/items') ? 'active menu-open' : '' }}">
+        {{-- <li class="treeview {{ Request::is('admin/categories') || Request::is('admin/products') ? 'active menu-open' : '' }}">
           <a href="#">
             <i class="fa fa-tags"></i> <span>Product</span>
             <span class="pull-right-container">
@@ -40,8 +40,24 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{ Request::is('/admin/categories') ? 'active' : '' }}" ><a href="{{ route('categories.index') }}"><i class="fa fa-circle-o"></i> Categories</a></li>
-            <li class="{{ Request::is('/admin/items') ? 'active' : '' }}"><a href="{{ route('products.index') }}"><i class="fa fa-circle-o"></i> Items</a></li>
+            <li class="{{ Request::is('/admin/products') ? 'active' : '' }}"><a href="{{ route('products.index') }}"><i class="fa fa-circle-o"></i> Items</a></li>
           </ul>
+        </li> --}}
+        <li class="{{ Request::is('admin/categories') || Request::is('admin/categories/*') ? 'active' : '' }}">
+          <a href="{{ route('categories.index') }}">
+            <i class="fa fa-pie-chart"></i> <span>Categories</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
+        </li>
+        <li class="{{ Request::is('admin/products') || Request::is('admin/products/*') ? 'active' : '' }}">
+          <a href="{{ route('products.index') }}">
+            <i class="fa fa-folder-open"></i> <span>Items</span>
+            <span class="pull-right-container">
+              
+            </span>
+          </a>
         </li>
         <li class="{{ Request::is('admin/orders') || Request::is('admin/orders/*') ? 'active' : '' }}">
           <a href="{{ route('orders.index') }}">
@@ -62,6 +78,14 @@
         <li class="{{ Request::is('admin/users') || Request::is('admin/users/*') ? 'active' : '' }}">
           <a href="{{ route('users.index') }}">
             <i class="fa fa-users"></i> <span>Users</span>
+            <span class="pull-right-container">
+
+            </span>
+          </a>
+        </li>
+        <li class="{{ Request::is('admin/filters') || Request::is('admin/filters/*') ? 'active' : '' }}">
+          <a href="{{ route('filters.index') }}">
+            <i class="fa fa-book"></i> <span>Reports</span>
             <span class="pull-right-container">
 
             </span>
