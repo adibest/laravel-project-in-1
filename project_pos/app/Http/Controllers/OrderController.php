@@ -8,6 +8,7 @@ use App\Model\OrderDetail;
 use App\Model\Payment;
 use App\Model\Product;
 use App\User;
+use PDF;
 
 class OrderController extends Controller
 {
@@ -179,5 +180,16 @@ class OrderController extends Controller
         Order::find($id)->delete();
 
         return redirect('/admin/orders');
+    }
+
+    public function print(Request $request, $id)
+    {
+        $orders = Order::where('order_id', $id)->get();
+
+        $pdf = PDF::loadview('orders.print',[
+            'orders' => $orders
+        ]);
+        // return $pdf->download('laporan-orders-pdf');
+        return $pdf->setPaper('a4', 'landscape')->stream();
     }
 }

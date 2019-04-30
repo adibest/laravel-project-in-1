@@ -34,8 +34,11 @@ class FilterController extends Controller
 
         $users = User::all();
 
-
-    	$orders = Order::where('user_id', $user)->whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
+        if ($user == 0) {
+            $orders = Order::whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
+        } else {
+    	   $orders = Order::where('user_id', $user)->whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
+        }
     	// dd($year, $user, $orders);
 
     	return view('filters.index', compact('orders', 'users'));

@@ -32,7 +32,7 @@
     					                  	<label class="col-sm-3 control-label">Tahun</label>
     					                  	<div class="col-sm-7">
     						                    <select class="form-control select2" name="year" required>
-    						                    	@foreach(range(2018, date('Y')) as $row)
+    						                    	@foreach(range(2015, date('Y')) as $row)
     							                    	<option value="{{$row}}" {{($row==date('Y')) ? 'selected': ''}}>{{ $row }}</option>
     						                    	@endforeach
     						                    </select>
@@ -52,6 +52,7 @@
     					                  	<label class="col-sm-3 control-label">Cashier</label>
     					                  	<div class="col-sm-7">
     						                    <select class="form-control select2" name="user_id" required>
+    						                    		<option value="0">All Cashier</option>
     						                    	@foreach($users as $cashier)
     							                    	<option value="{{$cashier->id}}">{{ $cashier->name }}</option>
     						                    	@endforeach
