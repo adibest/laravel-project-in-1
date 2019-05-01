@@ -21,4 +21,9 @@ class OrderDetail extends Model
     {
     	return $this->belongsTo(Product::class)->withTrashed();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

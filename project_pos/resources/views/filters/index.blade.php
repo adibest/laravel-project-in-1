@@ -3,7 +3,12 @@
 @section('title', 'Filter')
 
 @section('content')
-
+	@if ($message = Session::get('danger'))
+	          <div class="alert alert-danger alert-block">
+	            <button type="button" class="close" data-dismiss="alert">×</button> 
+	              <strong>{{ $message }}</strong>
+	          </div>
+	@endif
 	<div class="box">
 		<div class="box-header">
 			<h3>Reports</h3>
@@ -69,8 +74,7 @@
 						@endforeach
 					</tbody>
 				</table>
-			</div>
-			<a href="{{ route('filters.export') }}" class="btn btn-sm btn-danger" target="_blank">Export Excel</a>			
+			</div>			
 		</div>
 	</div>
 

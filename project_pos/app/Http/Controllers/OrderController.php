@@ -182,9 +182,11 @@ class OrderController extends Controller
         return redirect('/admin/orders');
     }
 
-    public function print(Request $request, $id)
+    public function print(Request $request)
     {
         // $order_details = OrderDetail::where('order_id', $id)->get();
+        $id = $request->order_id;
+        
         $users = User::all();
         $order_details = new OrderDetail();
 
@@ -192,6 +194,8 @@ class OrderController extends Controller
             $order_details = $order_details->where('order_id', $id);
         }
         $order_details = $order_details->get();
+
+        // dd($id,$order_details);
         $count = count($order_details);
         if ($count > 0) {
             $pdf = PDF::loadView('orders.print', compact('order_details', 'users'));

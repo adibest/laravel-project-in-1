@@ -36,12 +36,28 @@ class FilterController extends Controller
 
         if ($user == 0) {
             $orders = Order::whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
+
+            $count = count($orders);
+
+            if ($count > 0) {
+                return view('filters.index', compact('orders', 'users'));
+            } else {
+                return redirect('admin/filters')->with('danger', 'No data available');
+            }
         } else {
     	   $orders = Order::where('user_id', $user)->whereYear('created_at', '=', date($year))->whereMonth('created_at', '=', date($month))->get();
+
+           $count = count($orders);
+
+            if ($count > 0) {
+                return view('filters.index', compact('orders', 'users'));
+            } else {
+                return redirect('admin/filters')->with('danger', 'No data available');
+            }
         }
     	// dd($year, $user, $orders);
 
-    	return view('filters.index', compact('orders', 'users'));
+    	
     }
 
     public function print(Request $request)
@@ -68,7 +84,7 @@ class FilterController extends Controller
             $pdf = PDF::loadView('filters.print', compact('orders', 'users'));
         	return $pdf->setPaper('a4', 'landscape')->stream();            
         } else {
-            return redirect('/admin/filters');
+            return redirect('/admin/filters')->with('danger', 'No data available');;
         }
 
     }
@@ -96,7 +112,7 @@ class FilterController extends Controller
         if ($count > 0) {
             return Excel::download(new OrdersExport($year, $month, $user), 'repoerts.xlsx');        
         } else {
-            return redirect('/admin/filters');
+            return redirect('/admin/filters')->with('danger', 'No data available');;
         }
     }
 }

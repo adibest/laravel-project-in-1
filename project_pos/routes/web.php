@@ -19,9 +19,10 @@ Route::prefix('admin')->group(function () {
 	Route::get('/form', 'AuthController@form')->name('auth.form');
 	Route::post('/login', 'AuthController@login')->name('auth.login');
 	Route::post('/logout', 'AuthController@logout')->name('auth.logout');
-	Route::get('/home', function () {
-		return view('index');
-	});
+	// Route::get('/home', function () {
+	// 	return view('index');
+	// });
+	Route::get('/home', 'HomeController@index')->name('home.index');
 	Route::resource('/categories', 'CategoryController');
 	Route::resource('/payments', 'PaymentController');
 	Route::resource('/users', 'UserController');

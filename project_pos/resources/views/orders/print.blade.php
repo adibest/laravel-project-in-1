@@ -14,7 +14,6 @@
 							<th>Quantity</th>
 							<th>Note</th>
 							<th>Subtotal</th>
-							<th>Cashier</th>
 							<th>Created At</th>
 							{{-- <th>Action</th> --}}
 						</tr>
@@ -34,7 +33,6 @@
 							<td>{{ $details->quantity }}</td>
 							<td>{{ $details->note }}</td>
 							<td>Rp{{ format_uang($details->subtotal) }}</td>
-							<td>{{ $details->user_id }}</td>
 							<td>{{ $details->created_at }}</td>
 						</tr>
 					</tbody>

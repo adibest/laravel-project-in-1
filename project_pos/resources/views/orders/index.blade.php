@@ -51,8 +51,9 @@
 									</form>
 									<!-- END BASIC TABLE -->
 
-								<form action="{{ route('orders.print', $order->id) }}" method="post">
-									@csrf	
+								<form action="{{ route('orders.print') }}" method="post">
+									@csrf
+									<input type="hidden" name="order_id" value="{{ $order->id }}">
 									<div class="modal fade" id="{{ $order->id }}">
 									  <div class="modal-dialog">
 									    <div class="modal-content">
