@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\Http\Requests\UserStoreRequest;
 
 class AuthController extends Controller
 {
@@ -27,6 +29,26 @@ class AuthController extends Controller
     	} else {
     		return 'login gagal';
     	}
+     }
+
+     public function formreg()
+     {
+     	return view('logs.formreg');
+     }
+
+     public function register(UserStoreRequest $request)
+     {
+     	$request->merge([
+            'password'      => bcrypt($request->password),
+            'name'          => $request->name,
+            'email'          => $request->email,
+        ]);
+
+        $user = $request->only('password','name','email');
+
+        User::create($user);
+
+        return redirect('admin/form')->with('success', 'Silakan login, anda telah terdaftar');
      }
 
 

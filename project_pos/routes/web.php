@@ -19,6 +19,8 @@ Route::prefix('admin')->group(function () {
 	Route::get('/form', 'AuthController@form')->name('auth.form');
 	Route::post('/login', 'AuthController@login')->name('auth.login');
 	Route::post('/logout', 'AuthController@logout')->name('auth.logout');
+	Route::get('/formreg', 'AuthController@formreg')->name('auth.formreg');
+	Route::post('/register', 'AuthController@register')->name('auth.register');
 	// Route::get('/home', function () {
 	// 	return view('index');
 	// });
