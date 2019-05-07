@@ -41,7 +41,7 @@ class OrderController extends Controller
     {
         $payment = Payment::all();
         $user = User::all();
-        $product = Product::all();
+        $product = Product::all()->where('status', 1);
         $order = Order::all();
 
         // return view('orders.create', compact('payment', 'user', 'product', 'order'));
@@ -92,7 +92,7 @@ class OrderController extends Controller
 
         $dataOrder = $request->only('table_number', 'payment_id', 'user_id', 'total');
         $order = Order::create($dataOrder);
-        $dataDetail = $request->only('product_id', 'quantity', 'subtotal', 'note');
+        $dataDetail = $request->only('product_id', 'quantity', 'discount', 'subtotal', 'note');
         $countDetail = count($dataDetail['product_id']);
         for ($i=0; $i < $countDetail; $i++) { 
             
@@ -100,6 +100,7 @@ class OrderController extends Controller
             $detail->order_id       = $order->id;
             $detail->product_id     = $dataDetail['product_id'][$i];
             $detail->quantity       = $dataDetail['quantity'][$i];
+            $detail->discount       = $dataDetail['discount'][$i];
             $detail->subtotal       = $dataDetail['subtotal'][$i];
             $detail->note           = $dataDetail['note'][$i];
             $detail->save();

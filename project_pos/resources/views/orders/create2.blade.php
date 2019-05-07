@@ -33,11 +33,7 @@
 							v-for="(order, index) in orders"
 							:key="index"
 						>
-							
-							<div class="box-body col col-sm-1">
-								<label>Nomor</label>
-								<div>@{{ index + 1 }}</div>
-							</div>
+
 							<div class="box-body col col-sm-3">
 								<label>Product</label>
 								<select name="product_id[]" class="form-control" v-model="order.product_id">
@@ -50,10 +46,14 @@
 								<label>Quantity</label>
 								<input type="number" name="quantity[]" class="form-control" v-model="order.quantity">
 							</div>
+							<div class="box-body col col-sm-1">
+								<label>Discount(%)</label>
+								<input type="number" name="discount[]" class="form-control" v-model="order.discount">
+							</div>
 							<div class="box-body col col-sm-3">
 								<label>Subtotal</label>
 								<input type="number" name="subtotal[]" class="form-control"
-									:value="subtotal(order.product_id, order.quantity, index)"
+									:value="subtotal(order.product_id, order.discount, order.quantity, index)"
 									readonly 
 								>
 							</div>
@@ -92,12 +92,12 @@
 			el: '#app',
 			data: {
 				orders: [
-					{product_id: 0, quantity: 1, subtotal: 0, note:""},
+					{product_id: 0, quantity: 1, discount: 0, subtotal: 0, note:""},
 				]
 			},
 			methods: {
 				addDetail() {
-					var orders = {product_id: 0, quantity: 1, subtotal: 0, note:""};
+					var orders = {product_id: 0, quantity: 1, discount: 0, subtotal: 0, note:""};
 					this.orders.push(orders);
 				},
 				delDetail(index) {
@@ -105,8 +105,8 @@
 						this.orders.splice(index, 1);
 					}
 				},
-				subtotal(product_id, quantity, index) {
-					var subtotal = this.products[product_id] * quantity;
+				subtotal(product_id, discount, quantity, index) {
+					var subtotal = (this.products[product_id] - this.products[product_id]*discount/100) * quantity;
 					this.orders[index].subtotal = subtotal;
 					return subtotal;
 				},
