@@ -56,55 +56,31 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        // $product       = Product::find($request->product_id);
-        // $quantity      = $request->quantity;
-        // $count         = count($request->product_id);
-        // $note          = $request->note;
-        // $item          = $request->product_id;
+
+        $products = Product::all();
 
         $request->merge([
             'user_id'  => auth()->user()->id,
         ]);
 
-        // $order         = $request->only('table_number', 'payment_id', 'user_id');
-        // $orderRan      = Order::create($order); 
-        
-        // for ($i=0; $i < $count; $i++) { 
-        //     $request->merge([
-        //         'order_id'      => $orderRan->id,
-        //         'product_id'    => $item[$i],
-        //         'quantity'      => $quantity[$i],
-        //         'note'          => $note[$i],
-        //         'subtotal'      => $product[$i]->price * $quantity[$i],
-        //     ]);
-
-        //     $orderDetail        = $request->only('order_id', 'product_id' , 'quantity', 'note', 'subtotal');
-        //     OrderDetail::create($orderDetail);
-        
-        // }
-
-
-        // $orderTotal = OrderDetail::where('order_id', $orderRan->id)->sum('subtotal');
-
-        // Order::find($orderRan->id)->update([
-        //     'total' => $orderTotal,
-        // ]);
-
         $dataOrder = $request->only('table_number', 'payment_id', 'user_id', 'total');
         $order = Order::create($dataOrder);
-        $dataDetail = $request->only('product_id', 'quantity', 'discount', 'subtotal', 'note');
+        $dataDetail = $request->only('product_name', 'product_price', 'quantity', 'discount', 'subtotal', 'note');
         $countDetail = count($dataDetail['product_id']);
         for ($i=0; $i < $countDetail; $i++) { 
             
             $detail                 = new OrderDetail();
             $detail->order_id       = $order->id;
-            $detail->product_id     = $dataDetail['product_id'][$i];
+            $detail->product_name   = $products['name']->where('id', $dataDetail['product_id'][$i]); 
+            $detail->product_price  = $products['price']->where('id', $dataDetail['product_id'][$i]); 
             $detail->quantity       = $dataDetail['quantity'][$i];
             $detail->discount       = $dataDetail['discount'][$i];
             $detail->subtotal       = $dataDetail['subtotal'][$i];
             $detail->note           = $dataDetail['note'][$i];
             $detail->save();
         }
+
+        dd($products, $detail->product_name)
 
         // Redirect or whatever you want to do here
         return redirect('admin/orders');
