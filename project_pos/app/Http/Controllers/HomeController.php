@@ -9,6 +9,11 @@ use App\User;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('index');
+    }
+    
     public function index()
     {
     	$orders = Order::all();

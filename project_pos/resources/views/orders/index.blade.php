@@ -86,7 +86,7 @@
 									        					@foreach($order->order_detail as $details)
 									        					<tbody>
 									        						<tr>
-									        							<td>{{ $details->product->name}}</td>
+									        							<td>{{ $details->product_name}}</td>
 									        							<td>{{ $details->quantity }}</td>
 									        							<td>{{ $details->note }}</td>
 									        							<td>Rp{{ format_uang($details->subtotal) }}</td>

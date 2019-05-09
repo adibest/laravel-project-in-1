@@ -42,6 +42,12 @@
 									@endforeach
 								</select>
 							</div>
+								<input type="text" name="product_name[]" 
+									:value="product_name(order.product_id, index)"
+								>
+								<input type="number" name="product_price[]"
+									:value="product_price(order.product_id, index)"
+								>
 							<div class="box-body col col-sm-1">
 								<label>Quantity</label>
 								<input type="number" name="quantity[]" class="form-control" v-model="order.quantity">
@@ -92,12 +98,12 @@
 			el: '#app',
 			data: {
 				orders: [
-					{product_id: 0, quantity: 1, discount: 0, subtotal: 0, note:""},
+					{product_id: 0, product_name:"", product_price: 0, quantity: 1, discount: 0, subtotal: 0, note:""},
 				]
 			},
 			methods: {
 				addDetail() {
-					var orders = {product_id: 0, quantity: 1, discount: 0, subtotal: 0, note:""};
+					var orders = {product_id: 0, product_name:"", product_price: 0, quantity: 1, discount: 0, subtotal: 0, note:""};
 					this.orders.push(orders);
 				},
 				delDetail(index) {
@@ -110,6 +116,16 @@
 					this.orders[index].subtotal = subtotal;
 					return subtotal;
 				},
+				product_price(product_id, index) {
+					var product_price = this.products[product_id];
+					this.orders[index].product_price = product_price;
+					return product_price;
+				},
+				product_name(product_id, index) {
+					var product_name = this.names[product_id];
+					this.orders[index].product_name = product_name;
+					return product_name;
+				}
 			},
 			computed: {
 				products() {
@@ -117,6 +133,14 @@
 					product[0] = 0;
 					@foreach($product as $item)
 						product[ {{ $item->id }} ] = {{ $item->price }}
+					@endforeach
+					return product;
+				},
+				names() {
+					var product = [];
+					product[0] = 0;
+					@foreach($product as $item)
+						product[ {{ $item->id }} ] = "{{ $item->name }}"
 					@endforeach
 					return product;
 				},
