@@ -42,10 +42,10 @@
 									@endforeach
 								</select>
 							</div>
-								<input type="text" name="product_name[]" 
+								<input type="hidden" name="product_name[]" 
 									:value="product_name(order.product_id, index)"
 								>
-								<input type="number" name="product_price[]"
+								<input type="hidden" name="product_price[]"
 									:value="product_price(order.product_id, index)"
 								>
 							<div class="box-body col col-sm-1">

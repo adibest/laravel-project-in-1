@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
-
+		<h3>Halo, {{ $nama }} !</h3>
+		<p>{{ $website }}</p>
 		<!-- BASIC TABLE -->
 		<div class="box">
 			<div class="box-header with-border">
@@ -29,7 +30,7 @@
 					@foreach($order_details as $details)
 					<tbody>
 						<tr>
-							<td>{{ $details->product->name}}</td>
+							<td>{{ $details->product_name}}</td>
 							<td>{{ $details->quantity }}</td>
 							<td>{{ $details->note }}</td>
 							<td>Rp{{ format_uang($details->subtotal) }}</td>

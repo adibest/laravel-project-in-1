@@ -35,4 +35,6 @@ Route::prefix('admin')->group(function () {
 	Route::post('/filters/print', 'FilterController@print')->name('filters.print');
 	Route::post('/filters/export', 'FilterController@export')->name('filters.export');
 	Route::post('/orders/print', 'OrderController@print')->name('orders.print');
+
+	Route::get('/sendmail', 'MailController@index')->name('mails.index');
 });
