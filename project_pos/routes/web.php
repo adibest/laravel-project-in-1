@@ -37,4 +37,5 @@ Route::prefix('admin')->group(function () {
 	Route::post('/orders/print', 'OrderController@print')->name('orders.print');
 
 	Route::get('/sendmail', 'MailController@index')->name('mails.index');
+	Route::post('/sendmailTo', 'MailController@send')->name('mails.send');
 });

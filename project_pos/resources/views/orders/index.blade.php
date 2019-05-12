@@ -4,7 +4,12 @@
 
 @section('content')
 
-
+			@if ($message = Session::get('success'))
+			          <div class="alert alert-success alert-block">
+			            <button type="button" class="close" data-dismiss="alert">×</button> 
+			              <strong>{{ $message }}</strong>
+			          </div>
+			@endif
 			<!-- BASIC TABLE -->
 			<div class="box">
 				<div class="box-header with-border">
@@ -51,8 +56,6 @@
 									</form>
 									<!-- END BASIC TABLE -->
 
-								<form action="{{ route('orders.print') }}" method="post">
-									@csrf
 									<input type="hidden" name="order_id" value="{{ $order->id }}">
 									<div class="modal fade" id="{{ $order->id }}">
 									  <div class="modal-dialog">
@@ -104,9 +107,17 @@
 									      </div>
 									
 									      <div class="modal-footer">									      	
-									        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-									        <a class="btn btn-success" href="{{ route('mails.index') }}">Send to mail</a>
-									        <button type="submit" class="btn btn-primary">Print PDF</button>
+											<form action="{{ route('orders.print') }}" method="post">
+												@csrf
+										        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+										        <a class="btn btn-success" href="{{ route('mails.index') }}">Send to mail</a>
+										        <button type="submit" class="btn btn-primary">Print PDF</button>
+											</form>
+											<form method="post" action="{{ route('mails.send') }}">
+												@csrf
+												<input type="text" name="receiver">
+												<button type="submit">Send</button>
+											</form>
 									      </div>
 									    </div>
 									    <!-- /.modal-content -->
@@ -114,7 +125,6 @@
 									  <!-- /.modal-dialog -->
 									</div>
 									<!-- /.modal -->
-								</form>
 								</td>
 							</tr>
 						</tbody>

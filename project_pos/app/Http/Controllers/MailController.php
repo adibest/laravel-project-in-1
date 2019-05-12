@@ -15,4 +15,15 @@ class MailController extends Controller
 		return redirect('admin/orders');
  
 	}
+
+	public function send(Request $request)
+	{
+		
+		$receiver = $request->receiver;
+
+		Mail::to($receiver)->send(new NotaEmail());
+ 
+		return redirect('admin/orders')->with('success', 'Email telah dikirim');
+
+	}
 }

@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
-		<h3>Halo, {{ $nama }} !</h3>
-		<p>{{ $website }}</p>
+		{{-- <h3>Halo, {{ $nama }} !</h3>
+		<p>{{ $website }}</p> --}}
 		<!-- BASIC TABLE -->
 		<div class="box">
 			<div class="box-header with-border">

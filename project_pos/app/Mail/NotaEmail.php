@@ -30,12 +30,12 @@ class NotaEmail extends Mailable
     public function build()
     {
         $order_details = OrderDetail::all();
-        return $this->from('pengirim@malasngoding.com')
-                    ->view('orders.print', compact('order_details'))
-                    ->with(
-                    [
-                        'nama' => 'Diki Alfarabi Hadi',
-                        'website' => 'www.malasngoding.com',
-                    ]);
+        return $this->from('ahmadjayadibya@gmail.com')
+                    ->view('orders.print', compact('order_details'));
+                    // ->with(
+                    // [
+                    //     'nama' => 'Diki Alfarabi Hadi',
+                    //     'website' => 'www.malasngoding.com',
+                    // ]);
     }
 }
