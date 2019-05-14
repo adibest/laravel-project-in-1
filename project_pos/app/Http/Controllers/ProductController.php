@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\Category;
 use App\Http\Requests\ProductStoreRequest;
+use DataTables;
 
 class ProductController extends Controller
 {

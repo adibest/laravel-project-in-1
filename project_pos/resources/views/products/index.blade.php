@@ -2,6 +2,8 @@
 
 @section('title', 'Items')
 
+
+
 @section('content')
 
 
@@ -12,7 +14,7 @@
 					<a class="btn btn-primary pull-right" href="{{ route('products.create') }}">Create</a>
 				</div>
 				<div class="box-body">
-					<table class="table table-bordered">
+					<table class="table table-bordered" id="items">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -20,8 +22,8 @@
 								<th>Name</th>
 								<th>Price</th>
 								<th>Status</th>
-								<th>Created At</th>
-								<th>Action</th>
+								{{-- <th>Created At</th>
+								<th>Action</th> --}}
 							</tr>
 						</thead>
 						@php
@@ -34,7 +36,7 @@
 						@endphp
 						@foreach($data as $product)
 						<tbody>
-							<tr>
+							{{-- <tr>
 								<td>{{ $no++ }}</td>
 								<td>{{ $product->category->name }}</td>
 								<td>{{ $product->name }}</td>
@@ -49,7 +51,7 @@
 										<button class="btn btn-sm btn-danger" type="submit">Delete</button>
 									</form>
 								</td>
-							</tr>
+							</tr> --}}
 						</tbody>
 						@endforeach
 					</table>
@@ -58,6 +60,31 @@
 			<!-- END BASIC TABLE -->
 
 
+
+
+@endsection
+
+@section('datatables')
+
+	<script src="{{asset('adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+	<script type="text/javascript">
+		var oTable;
+	    $(function() {
+	        var oTable = $('#items').DataTable({
+	            processing: true,
+	            serverSide: true,
+	            ajax: 'admin/json/product',
+	            columns: [
+	            {data: 'id'},
+	            {data: 'name'},
+	            {data: 'price'},
+	            {data: 'status', orderable: false},
+	            {data: 'created_at', orderable: false, searchable: false},
+	        ],
+	        });
+	    });
+	</script>
 
 
 @endsection
