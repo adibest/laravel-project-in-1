@@ -36,7 +36,7 @@ Route::prefix('admin')->group(function () {
 	Route::post('/filters/export', 'FilterController@export')->name('filters.export');
 	Route::post('/orders/print', 'OrderController@print')->name('orders.print');
 
-	Route::get('json/product', 'JsonController@product');
+	Route::get('json/product', 'JsonController@product')->name('json.product');
 
 	Route::get('/sendmail', 'MailController@index')->name('mails.index');
 	Route::post('/sendmailTo', 'MailController@send')->name('mails.send');

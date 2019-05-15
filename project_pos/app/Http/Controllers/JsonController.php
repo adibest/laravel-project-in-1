@@ -12,7 +12,8 @@ class JsonController extends Controller
 
     public function product()
     {       
-        return Datatables::of(Product::query())->make(true);       
+        // return Datatables::of(Product::query())->make(true);
+        return datatables()->of(Product::all())->toJson();      
     }
 
 }
