@@ -41,3 +41,10 @@ Route::prefix('admin')->group(function () {
 	Route::get('/sendmail', 'MailController@index')->name('mails.index');
 	Route::post('/sendmailTo', 'MailController@send')->name('mails.send');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');

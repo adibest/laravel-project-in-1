@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Http\Requests\UserStoreRequest;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
