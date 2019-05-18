@@ -3,26 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Order;
+use App\Model\Product;
+use App\User;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('index');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
     public function index()
     {
-        return view('home');
+        $orders = Order::all();
+        $products = Product::all();
+        $users = User::all();
+        $countOrders = count($orders);
+        $countProducts = count($products);
+        $countUsers = count($users);
+        return view('index', compact('orders','products','users','countOrders','countProducts','countUsers'));
     }
 }
