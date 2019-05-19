@@ -19,6 +19,7 @@
 		            {data: 'price'},
 		            {data: 'status', orderable: false},
 		            {data: 'created_at', orderable: false, searchable: false},
+		            {data: 'action', name:'action', orderable: false, searchable: false},
 		        ],
 	        });
 	    });
@@ -46,7 +47,7 @@
 								<th>Price</th>
 								<th>Status</th>
 								<th>Created At</th>
-								{{-- <th>Action</th> --}}
+								<th>Action</th>
 							</tr>
 						</thead>
 						{{-- @php
