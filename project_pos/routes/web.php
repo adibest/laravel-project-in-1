@@ -37,6 +37,10 @@ Route::prefix('admin')->group(function () {
 	Route::post('/orders/print', 'OrderController@print')->name('orders.print');
 
 	Route::get('json/product', 'JsonController@product')->name('json.product');
+	Route::get('json/category', 'JsonController@category')->name('json.category');
+	Route::get('json/payment', 'JsonController@payment')->name('json.payment');
+	Route::get('json/user', 'JsonController@user')->name('json.user');
+	Route::get('json/order', 'JsonController@order')->name('json.order');
 
 	Route::get('/sendmail', 'MailController@index')->name('mails.index');
 	Route::post('/sendmailTo', 'MailController@send')->name('mails.send');

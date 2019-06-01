@@ -2,6 +2,30 @@
 
 @section('title', 'Categories')
 
+@section('datatables')
+
+	<script src="{{asset('adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+	<script type="text/javascript">
+		var table;
+	    $(function() {
+	        var table = $('#categories').DataTable({
+	            processing: true,
+	            serverSide: true,
+	            ajax: "{{ route('json.category') }}",
+	            columns: [
+	            	{data: 'id', searchable:false},
+		            {data: 'name'},
+		            {data: 'created_at', orderable: false, searchable: false},
+		            {data: 'action', name:'action', orderable: false, searchable: false},
+		        ],
+	        });
+	    });
+	</script>
+
+
+@endsection
+
 @section('content')
 
 
@@ -12,7 +36,7 @@
 					<span><a class="btn btn-primary pull-right" href="{{ route('categories.create') }}">Create</a></span>
 				</div>
 				<div class="box-body">
-					<table class="table table-bordered">
+					<table class="table table-bordered" id="categories">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -21,26 +45,6 @@
 								<th>Action</th>
 							</tr>
 						</thead>
-						@php
-							$no = 1;
-						@endphp
-						@foreach($data as $category)
-						<tbody>
-							<tr>
-								<td>{{ $no++ }}</td>
-								<td>{{ $category->name }}</td>
-								<td>{{ $category->created_at }}</td>
-								<td>
-									<form method="post" action="{{ route('categories.destroy', $category->id) }}">
-										<a class="btn btn-sm btn-primary" href="{{ route('categories.edit', $category->id) }}">Edit</a>
-										@csrf
-										@method('DELETE')
-										<button class="btn btn-sm btn-danger" type="submit">Delete</button>
-									</form>
-								</td>
-							</tr>
-						</tbody>
-						@endforeach
 					</table>
 				</div>
 			</div>

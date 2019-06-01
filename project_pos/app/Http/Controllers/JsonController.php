@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DataTables;
 use App\Model\Product;
 use App\Model\Category;
+use App\Model\Payment;
+use App\Model\Order;
+use App\User;
 use Form;
 
 class JsonController extends Controller
@@ -42,6 +45,86 @@ class JsonController extends Controller
 
                 return $tag;
             })
+            ->make(true);    
+    }
+
+    private $uri2 = 'categories';
+
+    public function category()
+    {       
+
+        $categories = Category::select(['id', 'name', 'created_at']);
+
+        return Datatables::of($categories)
+            ->addColumn('action', function ($category) {
+
+                $tag = Form::open(array("url" => route($this->uri2.'.destroy',$category->id), "method" => "DELETE"));
+                $tag .= "<a href=".route($this->uri2.'.edit',$category->id)." class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i> Edit</a>";
+                $tag .= " <button type='submit' class='delete btn btn-danger btn-xs'><i class='fa fa-trash'></i> Delete</button>";
+                $tag .= Form::close();
+
+                return $tag;
+            })
+            ->make(true);    
+    }
+
+    private $uri3 = 'payments';
+
+    public function payment()
+    {       
+
+        $categories = Payment::select(['id', 'name', 'created_at']);
+
+        return Datatables::of($categories)
+            ->addColumn('action', function ($payment) {
+
+                $tag = Form::open(array("url" => route($this->uri3.'.destroy',$payment->id), "method" => "DELETE"));
+                $tag .= "<a href=".route($this->uri3.'.edit',$payment->id)." class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i> Edit</a>";
+                $tag .= " <button type='submit' class='delete btn btn-danger btn-xs'><i class='fa fa-trash'></i> Delete</button>";
+                $tag .= Form::close();
+
+                return $tag;
+            })
+            ->make(true);    
+    }
+
+    private $uri4 = 'users';
+
+    public function user()
+    {       
+
+        $categories = User::select(['id', 'name', 'email', 'created_at']);
+
+        return Datatables::of($categories)
+            ->addColumn('action', function ($user) {
+
+                $tag = Form::open(array("url" => route($this->uri4.'.destroy',$user->id), "method" => "DELETE"));
+                $tag .= "<a href=".route($this->uri4.'.edit',$user->id)." class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i> Edit</a>";
+                $tag .= " <button type='submit' class='delete btn btn-danger btn-xs'><i class='fa fa-trash'></i> Delete</button>";
+                $tag .= Form::close();
+
+                return $tag;
+            })
+            ->make(true);    
+    }
+
+    private $uri5 = 'orders';
+
+    public function order()
+    {       
+
+        $categories = Order::select(['id', 'table_number', 'total', 'payment_id', 'user_id', 'created_at']);
+
+        return Datatables::of($categories)
+            // ->addColumn('action', function ($order) {
+
+            //     $tag = Form::open(array("url" => route($this->uri5.'.destroy',$order->id), "method" => "DELETE"));
+            //     $tag .= "<a href=".route($this->uri5.'.edit',$order->id)." class='btn btn-primary btn-xs'><i class='fa fa-pencil'></i> Edit</a>";
+            //     $tag .= " <button type='submit' class='delete btn btn-danger btn-xs'><i class='fa fa-trash'></i> Delete</button>";
+            //     $tag .= Form::close();
+
+            //     return $tag;
+            // })
             ->make(true);    
     }
 

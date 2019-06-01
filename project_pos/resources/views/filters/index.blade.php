@@ -2,6 +2,32 @@
 
 @section('title', 'Filter')
 
+@section('datatables')
+
+	<script src="{{asset('adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+	<script type="text/javascript">
+		var table;
+	    $(function() {
+	        var table = $('#reports').DataTable({
+	            processing: true,
+	            serverSide: true,
+	            ajax: "{{ route('json.order') }}",
+	            columns: [
+	            	{data: 'id', searchable:false},
+		            {data: 'table_number'},
+		            {data: 'total'},
+		            {data: 'payment_id'},
+		            {data: 'user_id'},
+		            {data: 'created_at', orderable: false, searchable: false},
+		        ],
+	        });
+	    });
+	</script>
+
+
+@endsection
+
 @section('content')
 	@if ($message = Session::get('danger'))
 	          <div class="alert alert-danger alert-block">
@@ -42,7 +68,7 @@
 		</div>
 		<div class="box-body">
 			<div class="col-xs-12 table-responsive">
-				<table class="table table-bordered">
+				<table class="table table-bordered" id="reports">
 					<thead>
 						<tr>
 							<th>No</th>
@@ -54,7 +80,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@php
+						{{-- @php
 						$no = 1;
 
 						function format_uang($angka){ 
@@ -71,7 +97,7 @@
 							<td>{{ $order->user->name }}</td>
 							<td>{{ $order->created_at }}</td>
 						</tr>
-						@endforeach
+						@endforeach --}}
 					</tbody>
 				</table>
 			</div>			

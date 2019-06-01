@@ -2,6 +2,30 @@
 
 @section('title', 'Payments')
 
+@section('datatables')
+
+	<script src="{{asset('adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+	<script type="text/javascript">
+		var table;
+	    $(function() {
+	        var table = $('#payments').DataTable({
+	            processing: true,
+	            serverSide: true,
+	            ajax: "{{ route('json.payment') }}",
+	            columns: [
+	            	{data: 'id', searchable:false},
+		            {data: 'name'},
+		            {data: 'created_at', orderable: false, searchable: false},
+		            {data: 'action', name:'action', orderable: false, searchable: false},
+		        ],
+	        });
+	    });
+	</script>
+
+
+@endsection
+
 @section('content')
 
 			<!-- BASIC TABLE -->
@@ -11,7 +35,7 @@
 					<a class="btn btn-primary pull-right" href="{{ route('payments.create') }}">Create</a>
 				</div>
 				<div class="box-body">
-					<table class="table table-condensed">
+					<table class="table table-condensed" id="payments">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -20,26 +44,6 @@
 								<th>Action</th>
 							</tr>
 						</thead>
-						@php
-							$no = 1;
-						@endphp
-						@foreach($data as $payment)
-						<tbody>
-							<tr>
-								<td>{{ $no++ }}</td>
-								<td>{{ $payment->name }}</td>
-								<td>{{ $payment->created_at }}</td>
-								<td>
-									<form method="post" action="{{ route('payments.destroy', $payment->id) }}">
-										<a class="btn btn-sm btn-primary" href="{{ route('payments.edit', $payment->id) }}">Edit</a>
-										@csrf
-										@method('DELETE')
-										<button class="btn btn-sm btn-danger" type="submit">Delete</button>
-									</form>
-								</td>
-							</tr>
-						</tbody>
-						@endforeach
 					</table>
 				</div>
 			</div>

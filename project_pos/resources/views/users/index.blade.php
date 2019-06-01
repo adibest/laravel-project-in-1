@@ -2,6 +2,31 @@
 
 @section('title', 'Users')
 
+@section('datatables')
+
+	<script src="{{asset('adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{asset('adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+	<script type="text/javascript">
+		var table;
+	    $(function() {
+	        var table = $('#users').DataTable({
+	            processing: true,
+	            serverSide: true,
+	            ajax: "{{ route('json.user') }}",
+	            columns: [
+	            	{data: 'id', searchable:false},
+		            {data: 'name'},
+		            {data: 'email'},
+		            {data: 'created_at', orderable: false, searchable: false},
+		            {data: 'action', name:'action', orderable: false, searchable: false},
+		        ],
+	        });
+	    });
+	</script>
+
+
+@endsection
+
 @section('content')
 
 			<!-- BASIC TABLE -->
@@ -11,7 +36,7 @@
 					<a class="btn btn-primary pull-right" href="{{ route('users.create') }}">Create</a>
 				</div>
 				<div class="box-body">
-					<table class="table table-bordered">
+					<table class="table table-bordered" id="users">
 						<thead>
 							<tr>
 								<th>#</th>
@@ -21,7 +46,7 @@
 								<th>Action</th>
 							</tr>
 						</thead>
-						@php
+						{{-- @php
 							$no = 1;
 						@endphp
 						@foreach($data as $user)
@@ -41,7 +66,7 @@
 								</td>
 							</tr>
 						</tbody>
-						@endforeach
+						@endforeach --}}
 					</table>
 				</div>
 			</div>
