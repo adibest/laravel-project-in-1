@@ -46,9 +46,9 @@ return [
 
     /* Social Media */
         'facebook' => [
-            'client_id'     => env('FB_ID'),
-            'client_secret' => env('FB_SECRET'),
-            'redirect'      => env('FB_URL'),
+            'client_id'     => env('FACEBOOK_CLIENT_ID'), 
+            'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+            'redirect'      => env('FACEBOOK_CLIENT_REDIRECT'),
         ],
 
         'twitter' => [

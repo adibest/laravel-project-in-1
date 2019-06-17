@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+// use App/SocialAccount;
 
 class AuthController extends Controller
 {
@@ -25,10 +26,19 @@ class AuthController extends Controller
      */
     public function handleProviderCallback($provider)
     {
-        $user = Socialite::driver($provider)->user();
+        try {
+            $user = Socialite::driver($provider)->user();
+        } catch (Exception $e) {
+            return redirect('admin/form');
+        }
+
+        // $user = Socialite::driver($provider)->user();
+
         $authUser = $this->findOrCreateUser($user, $provider);
+
         Auth::login($authUser, true);
-        return redirect('/admin/form');
+
+        return redirect('/home');
     }
 
     /**
