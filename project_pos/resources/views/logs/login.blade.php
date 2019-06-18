@@ -67,7 +67,6 @@
         <!-- /.col -->
       </div>
     </form>
-    <a href="{{ route('auth.formreg') }}" class="text-center">Register a new membership</a>
     <div class="form-group row">
         <div class="social-auth-links text-center">
             <a href="{{ url('/auth/github') }}" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> Github</a>
@@ -75,6 +74,12 @@
             <a href="{{ url('/auth/facebook') }}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Facebook</a>
         </div>
     </div>
+    <a class="" href="{{ route('password.request') }}">
+        Forgot Your Password?
+    </a><br>
+    <a class="" href="{{ route('auth.formreg') }}">
+        Register a new membership
+    </a>
 
   </div>
   <!-- /.login-box-body -->
