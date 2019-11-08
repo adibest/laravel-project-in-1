@@ -1,5 +1,3 @@
-<body onload="window.print();">
-
 	@php
 		$no = 1;
 
@@ -105,5 +103,3 @@
 			</div>
 		</div>
 	</section>
-
-</body>

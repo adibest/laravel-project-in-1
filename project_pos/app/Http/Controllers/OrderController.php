@@ -16,7 +16,7 @@ class OrderController extends Controller
     {
         $this->middleware('auth')->only('index');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -66,13 +66,14 @@ class OrderController extends Controller
         $dataOrder = $request->only('table_number', 'payment_id', 'user_id', 'total');
         $order = Order::create($dataOrder);
         $dataDetail = $request->only('product_name', 'product_price', 'quantity', 'discount', 'subtotal', 'note');
+        dd($dataDetail);
         $countDetail = count($dataDetail['product_name']);
-        for ($i=0; $i < $countDetail; $i++) { 
-            
+        for ($i=0; $i < $countDetail; $i++) {
+
             $detail                 = new OrderDetail();
             $detail->order_id       = $order->id;
-            // $detail->product_name   = $products['name']->where('id', $dataDetail['product_id'][$i]); 
-            // $detail->product_price  = $products['price']->where('id', $dataDetail['product_id'][$i]); 
+            // $detail->product_name   = $products['name']->where('id', $dataDetail['product_id'][$i]);
+            // $detail->product_price  = $products['price']->where('id', $dataDetail['product_id'][$i]);
             $detail->product_name   = $dataDetail['product_name'][$i];
             $detail->product_price  = $dataDetail['product_price'][$i];
             $detail->quantity       = $dataDetail['quantity'][$i];
@@ -133,8 +134,8 @@ class OrderController extends Controller
         $countDetail = count($dataDetail['product_id']);
 
         OrderDetail::where('order_id', $id)->delete();
-        for ($i=0; $i < $countDetail; $i++) { 
-            
+        for ($i=0; $i < $countDetail; $i++) {
+
             $detail                 = new OrderDetail();
             $detail->order_id       = $id;
             $detail->product_id     = $dataDetail['product_id'][$i];
@@ -164,7 +165,7 @@ class OrderController extends Controller
     {
         // $order_details = OrderDetail::where('order_id', $id)->get();
         $id = $request->order_id;
-        
+
         $users = User::all();
         $order_details = new OrderDetail();
 
@@ -176,8 +177,8 @@ class OrderController extends Controller
         // dd($id,$order_details);
         $count = count($order_details);
         if ($count > 0) {
-            $pdf = PDF::loadView('orders.print', compact('order_details', 'users'));
-            return $pdf->setPaper('a4', 'landscape')->stream();            
+            $pdf = PDF::loadView('orders.print2', compact('order_details', 'users'));
+            return $pdf->setPaper('a4', 'landscape')->stream();
         } else {
             return redirect('/admin/orders');
         }
